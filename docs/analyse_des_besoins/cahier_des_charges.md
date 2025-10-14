@@ -36,6 +36,19 @@ La gestion des droits d'accès est structurée selon une hiérarchie claire comp
 L'infrastructure technique repose sur un Raspberry Pi qui hébergera l'ensemble de la solution. Cette configuration nécessite l'installation et la configuration d'un serveur web, d'un système de gestion de base de données MySQL, ainsi que la mise en place de mesures de sécurité appropriées, notamment pour les accès SSH. L'ensemble doit former une solution cohérente et sécurisée, capable de répondre aux exigences de performance et de fiabilité attendues par le client.
 
 *Pour le moment, nous ne disposons pas de consignes précises pour la mise en place des modules.*
+
+**III./ Pré-requis**
+
+La réalisation de notre application web nécessite l'utilisation de plusieurs technologies et diverses ressources tant logicielles que matérielles. Notre développement s'appuiera sur un ensemble complet de langages de programmation pour répondre aux différents aspects du projet.
+
+Le développement backend sera principalement assuré par PHP et Python, deux langages puissants et complémentaires. PHP servira de base pour la création des fonctionnalités web dynamiques, tandis que Python pourra être utilisé pour des traitements plus complexes et l'analyse de données. La gestion des données sera assurée par SQL, permettant une interaction avec notre base de données.
+
+Pour la partie frontend, nous utiliserons HTML et CSS pour créer une interface utilisateur responsive. Ces technologies seront enrichies par l'utilisation du langage R, particulièrement adapté pour les calculs statistiques et la visualisation de données.
+
+Sur le plan des ressources logicielles, notre équipe s'appuiera sur les environnement de développement (IDE) professionnels comme JetBrains, reconnus pour leur robustesse et leurs fonctionnalités avancées de développement. Le système d'exploitation Raspberry Pi OS sera déployé sur notre serveur, offrant un environnement stable et optimisé pour notre infrastructure.
+
+Concernant les ressources matérielles, nous disposerons des ordinateurs de l'IUT pour le développement, complétés par un Raspberry Pi qui servira de serveur de production. Une carte SD sera utilisée pour le stockage du système et des données, formant ainsi une infrastructure complète et autonome pour notre application. 
+
 **LECTURE DU CAHIER DES CHARGES SAE**
 
 | Acteurs | Objets | Actions |
