@@ -49,6 +49,38 @@ Sur le plan des ressources logicielles, notre équipe s'appuiera sur les environ
 
 Concernant les ressources matérielles, nous disposerons des ordinateurs de l'IUT pour le développement, complétés par un Raspberry Pi qui servira de serveur de production. Une carte SD sera utilisée pour le stockage du système et des données, formant ainsi une infrastructure complète et autonome pour notre application. 
 
+**IV./ Priorités**
+
+Les priorités éventuelles du développement à confirmer avec le client :
+
+1. **Configuration du Serveur et Installation du Système**
+
+    Notre première priorité est la mise en place d'une infrastructure technique solide. Cela comprend la configuration complète du serveur Raspberry Pi, l'installation du système d'exploitation, la mise en place du serveur web et le déploiement de la base de données MySQL. Cette étape fondamentale doit garantir un environnement stable et performant pour notre application.
+
+2. **Développement des modules de gestion du parc informatique**
+
+    Au cœur de notre plateforme se trouve un parc informatique. Une fois les spécifications reçues du client, nous concentrerons nos efforts sur le développement de ce parc informatique. Celui-ci devra être conçu avec une attention particulière portée à une gestion optimale de l’inventaire de celui-ci.
+
+3. **Gestion des Utilisateurs et des Droits d'Accès**
+
+    La mise en place d'un système robuste de gestion des utilisateurs constitue notre troisième priorité. Ce système devra gérer efficacement les différents niveaux d'accès, du simple visiteur à l'administrateur système, en passant par l'utilisateur inscrit et l'administrateur web. La sécurité et le contrôle des accès sont essentiels pour préserver l'intégrité de la plateforme.
+
+4. **Conception de l'Interface Utilisateur**
+
+    L'interface utilisateur doit être intuitive et accessible pour tous les types d'utilisateurs. Nous développerons une interface responsive qui guidera naturellement les utilisateurs dans leur utilisation des différents modules. Une attention particulière sera portée à l'expérience utilisateur pour faciliter l'adoption de la plateforme.
+
+5. **Documentation et Support Utilisateur**
+
+    La création d'une documentation complète et claire est essentielle. Elle comprendra des guides d'utilisation, un texte explicatif détaillé et une vidéo de présentation. Ces ressources faciliteront non seulement l'utilisation de la plateforme mais serviront également de support pour l'évaluation du projet.
+
+6. **Sécurité de l'Application**
+
+    La sécurisation globale de l'application est une priorité. Cela inclut la protection des accès SSH, la sécurisation des communications entre le frontend et le backend, et la mise en place de mesures de protection des données. Ces éléments sont cruciaux pour garantir la confidentialité et l'intégrité du système.
+
+7. **Tests et Validation**
+
+    Enfin, une phase complète de tests et de validation sera menée avant la mise en production. Cette étape permettra de vérifier le bon fonctionnement de chaque module, la performance globale de l'application et la robustesse des mesures de sécurité mises en place. Cette validation finale est indispensable pour s'assurer que notre solution répond pleinement aux attentes du client.
+
 **LECTURE DU CAHIER DES CHARGES SAE**
 
 | Acteurs | Objets | Actions |
