@@ -9,6 +9,12 @@ Le projet s'inscrit dans le cadre de la seconde année de BUT informatique à l'
 
 La plateforme que nous devons développer sera hébergée sur un serveur Raspberry Pi 4 (RPI4) fourni par l'IUT. Ce choix technique nous projette dans un monde professionnel car nous devrons nous-mêmes procéder à l'installation et à la configuration complète de l'environnement, incluant le système d'exploitation, le serveur web et l'ensemble des applications nécessaire pour notre plateforme.
 
+### **2.Objectifs**
+
+Ce document a pour vocation première de définir avec précision le projet et l'ensemble de ses fonctionnalités. Il servira de référence tout au long du développement, permettant d'assurer une communication claire entre les différents intervenants, qu'il s'agisse des professeurs ou des futurs utilisateurs. Dans un contexte de travail en équipe de cinq étudiants, selon nous, il est essentiel d'avoir une base documentaire solide qui guidera nos efforts de développement et servira de support pour l'évaluation finale du projet.
+
+Nous développerons de notre mieux pour avoir une plateforme web performante et sécurisée, qui offrira une plateforme de gestion de parc informatique accessible via une interface web. Une attention particulière sera portée à la documentation du projet, qui devra respecter les bonnes pratiques de programmation et de gestion de projet.
+
 **LECTURE DU CAHIER DES CHARGES SAE**
 
 | Acteurs | Objets | Actions |
