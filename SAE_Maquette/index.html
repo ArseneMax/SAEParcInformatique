@@ -1,33 +1,36 @@
 <!doctype html>
 <html lang="fr">
 
-<head>
-  <meta charset="utf-8">
-  <title>SAE_Maquette</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
+  <head>
+    <meta charset="utf-8">
+    <title>SAE_Maquette</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
 
-<header style="background-color: #fadb99; padding: 10px 20px; display: flex; align-items: center;">
-  <div style="display: flex; align-items: center; justify-content: flex-start; width: 100%;">
-      <nav>
-        <ul class = "nav-menu" style="list-style-type: none; padding: 0; display: flex;">
-          <li class="nav-item" style="margin-right: 20px;">
-            <a href="index.html" class="bouton-nav" id="bouton-nav0" title="Header Accueil">Accueil</a></li>
-          <li class="nav-item" style="margin-right: 20px;">
-            <a href="tech.html" class="bouton-nav" id="bouton-nav1" title="Technicien">Technicien</a></li>
-          <li class="nav-item" style="margin-right: 20px;">
-            <a href="connexion.html" class="bouton-nav" id="bouton-nav2" title="Connexion">Connexion</a></li>
-        </ul>
-      </nav>
-  </div>
-</header>
+  <body>
+    <header>
+      <div class="nav-container">
+        <nav>
+          <ul class="nav-menu nav-left">
+            <li><a href="index.html" class="bouton-nav">Accueil</a></li>
+            <li><a href="tech.html" class="bouton-nav">Technicien</a></li>
+          </ul>
+        </nav>
 
-<body>
+        <div class="site-name">Nom_du_site</div>
 
-<h1><strong>Nom_du_site</strong></h1>
+        <nav>
+          <ul class="nav-menu">
+            <li><a href="connexion.html" class="bouton-nav" id="bouton-connexion">Connexion</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
 
-  <p>Hello world! This is HTML5 Boilerplate.</p>
-
-</body>
+    <div class="main-content">
+      <h1>Bienvenue</h1>
+      <p class="welcome-text">Texte de bienvenue</p>
+    </div>
+  </body>
 
 </html>
