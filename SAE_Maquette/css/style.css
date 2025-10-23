@@ -81,3 +81,89 @@ th{
   padding: 8px 10px;
 }
 
+.form-container {
+  background-color: #666666;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+.titre {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 37px;
+  padding: 25px 0;
+}
+
+
+.titre h2a {
+  padding: 5px 10px;
+  border-radius: 5px;
+  transform: translateY(0px);
+  color: #ffa500; /* Orange vif */
+  background-color: #333333; /* Fond sombre pour un meilleur contraste */
+}
+
+.formulaire {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Style pour les labels */
+label {
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+
+/* Style pour les champs de saisie */
+input[type="text"], input[type="password"] {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-width: 300px;
+  transition: border-color 0.3s ease;
+  font-size: 16px;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+  border-color: orange;
+  outline: none;
+}
+
+
+.form_button {
+  height: 45px;
+  width: 150px;
+  border-radius: 10px;
+  border: none;
+  background-color: orange;
+  font-weight: bold;
+  color: #070707;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+  margin-top: 20px;
+}
+
+
+.form_button:hover {
+  background-color: #fdae27;
+}
+
+.password-container {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+}
+
