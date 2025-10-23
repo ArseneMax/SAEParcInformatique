@@ -66,4 +66,18 @@ header {
   padding: 10px 15px;
   border-radius: 5px;
 }
+table {
+  margin-right: auto;
+  margin-left: auto;
+  justify-items: center;
+  margin-top: 50px;
+  border-collapse: collapse;
+  border: 2px solid rgb(0, 0, 0);
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+th{
+  border: 2px solid rgb(0, 0, 0);
+  padding: 8px 10px;
+}
 
