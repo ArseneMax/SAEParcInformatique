@@ -1,49 +1,50 @@
 <!doctype html>
 <html lang="fr">
 
-<head>
-    <meta charset="utf-8">
-    <title>SAE_Maquette</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
+    <head>
+        <meta charset="utf-8">
+        <title>SAE_Maquette</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
 
-<header style="background-color: #fadb99; padding: 10px 20px; display: flex; align-items: center;">
-    <div style="display: flex; align-items: center; justify-content: flex-start; width: 100%;">
-        <nav>
-            <ul class = "nav-menu" style="list-style-type: none; padding: 0; display: flex;">
-                <li class="nav-item" style="margin-right: 20px;">
-                    <a href="index.html" class="bouton-nav" id="bouton-nav0" title="Header Accueil">Accueil</a></li>
-                <li class="nav-item" style="margin-right: 20px;">
-                    <a href="tech.html" class="bouton-nav" id="bouton-nav1" title="Technicien">Technicien</a></li>
-                <li class="nav-item" style="margin-right: 20px;">
-                    <a href="connexion.html" class="bouton-nav" id="bouton-nav2" title="Connexion">Connexion</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+    <body>
+        <header>
+            <div class="nav-container">
+                <nav>
+                    <ul class="nav-menu nav-left">
+                        <li><a href="index.html" class="bouton-nav">Accueil</a></li>
+                        <li><a href="tech.html" class="bouton-nav">Technicien</a></li>
+                    </ul>
+                </nav>
 
-<body>
+                <div class="site-name">Nom_du_site</div>
 
-<h1><strong>Nom_du_site</strong></h1>
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="connexion.html" class="bouton-nav" id="bouton-connexion">Connexion</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
 
-<div class="form-container" style="background-color: #fadb99">
-    <div class="titre">
-        <h2a>Connexion</h2a>
-    </div>
+        <div class="connexion-page">
+            <div class="form-container">
+                <h2 class="form-title">Connexion</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="login">Identifiant</label>
+                        <input type="text" id="login" name="login" required>
+                    </div>
 
-<label for="login" style="cursor: pointer">Login</label>
+                    <div class="form-group">
+                        <label for="pass">Mot de passe</label>
+                        <input type="password" id="pass" name="pass" required>
+                    </div>
 
-<input type="text" name="login" id="login" required/>
+                    <button type="submit" class="form-button">Se connecter</button>
+                </form>
+            </div>
+        </div>
+    </body>
 
-<label for="pass" style="cursor: pointer">Mot de passe</label>
-
-<div class="password-container">
-    <input type="password" name="pass" id="pass" required/>
-</div>
-
-
-<button type="submit" name="ok" value="ok" class="form_button">Se connecter</button>
-
-</div>
-</body>
 </html>
