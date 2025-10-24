@@ -7,7 +7,8 @@
 :root {
   --apricot: #F7B088;
   --terracotta: #B84A2F;
-  --terracotta-dark: #8B3622;
+    --terracotta-vert: #567159;
+  --terracotta-dark: #562114;
   --dark: #1a1a1a;
   --light: #ffffff;
 }
@@ -146,7 +147,7 @@ header {
 }
 
 .bouton_ajout:hover {
-    background-color: #6B2618;
+    background-color: #4d0f1f;
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(139, 54, 34, 0.4);
 }
@@ -176,6 +177,31 @@ header {
 }
 
 .bouton_export:active {
+    transform: translateY(0);
+}
+
+.bouton_import {
+    background-color: var(--terracotta-vert);
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-right: 15px;
+    box-shadow: 0 2px 8px rgba(139, 54, 34, 0.2);
+    min-width: 120px;
+}
+
+.bouton_import:hover {
+    background-color: #567a5f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(139, 54, 34, 0.4);
+}
+
+.bouton_import:active {
     transform: translateY(0);
 }
 
