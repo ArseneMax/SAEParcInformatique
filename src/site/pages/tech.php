@@ -1,0 +1,136 @@
+<?php
+
+?>
+
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>SAE_Maquette</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+<header>
+    <div class="nav-container">
+        <nav>
+            <ul class="nav-menu nav-left">
+                <li><a href="index.php" class="bouton-nav">Accueil</a></li>
+                <li><a href="tech.php" class="bouton-nav">Technicien</a></li>
+            </ul>
+        </nav>
+
+        <div class="site-name">Nom_du_site</div>
+
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="connexion.php" class="bouton-nav" id="bouton-connexion">Connexion</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="tech-content">
+    <h1 class="page-title">Gestion du Matériel</h1>
+    <h2>Unités centrales</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th>NAME</th>
+            <th>SERIAL</th>
+            <th>MANUFACTURER</th>
+            <th>MODEL</th>
+            <th>TYPE</th>
+            <th>CPU</th>
+            <th>RAM_MB</th>
+            <th>DISK_GB</th>
+            <th>OS</th>
+            <th>DOMAIN</th>
+            <th>LOCATION</th>
+            <th>BUILDING</th>
+            <th>ROOM</th>
+            <th>MACADDR</th>
+            <th>PURCHASE_DATE</th>
+            <th>WARRANTY_END</th>
+            <th>MODIFIER</th>
+            <th>SUPPRIMER</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
+            <td><a href="">Modifier</a></td>
+            <td><a href="">Supprimer</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="button-container">
+        <button class="bouton_ajout">Ajouter</button>
+        <button class="bouton_import">Importer</button>
+        <button class="bouton_export">Exporter</button>
+    </div>
+
+    <h2>Moniteur</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th>SERIAL</th>
+            <th>MANUFACTURER</th>
+            <th>MODEL</th>
+            <th>SIZE_INCH</th>
+            <th>RESOLUTION</th>
+            <th>CONNECTOR</th>
+            <th>ATTACHED_TO</th>
+            <th>MODIFIER</th>
+            <th>SUPPRIMER</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
+            <td><a href="">Modifier</a></td>
+            <td><a href="">Supprimer</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="button-container">
+        <button class="bouton_ajout">Ajouter</button>
+        <button class="bouton_import">Importer</button>
+        <button class="bouton_export">Exporter</button>
+    </div>
+
+
+</div>
+
+
+
+</body>
+
+</html>
+

@@ -1,0 +1,54 @@
+<?php
+
+?>
+
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>SAE_Maquette</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+<header>
+    <div class="nav-container">
+        <nav>
+            <ul class="nav-menu nav-left">
+                <li><a href="index.php" class="bouton-nav">Accueil</a></li>
+                <li><a href="tech.php" class="bouton-nav">Technicien</a></li>
+            </ul>
+        </nav>
+
+        <div class="site-name">Nom_du_site</div>
+
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="connexion.php" class="bouton-nav" id="bouton-connexion">Connexion</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="connexion-page">
+    <div class="form-container">
+        <h1 class="form-title">Connexion</h1>
+        <form>
+            <div class="form-group">
+                <label for="login">Identifiant</label>
+                <input type="text" id="login" name="login" required>
+            </div>
+
+            <div class="form-group">
+                <label for="pass">Mot de passe</label>
+                <input type="password" id="pass" name="pass" required>
+            </div>
+
+            <button type="submit" class="form-button">Se connecter</button>
+        </form>
+    </div>
+</div>
+</body>
+
+</html>
