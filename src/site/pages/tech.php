@@ -1,6 +1,6 @@
 <?php
 include("../fragment/header.html");
-include("../fragment/navbar.html");
+include("../fragment/navbar.php");
 ?>
 
 
