@@ -6,7 +6,6 @@ include("../fragment/navbar.php");
 
 echo"<body>
     <div class='main-content'>";
-session_start();
 if (isset($_SESSION['login'])){
     echo"<h1>Bienvenue ".$_SESSION['login']." </h1>";
 }else {
