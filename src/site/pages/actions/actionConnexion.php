@@ -1,14 +1,14 @@
 <?php
-$nom_table = "sae";
+$nom_BD = "PARKIT";
 
-$connect = mysqli_connect("localhost", "root", "");
-$db = mysqli_select_db($connect,$nom_table);
+$connect = mysqli_connect("localhost", "admin", "!sae2025!");
+$db = mysqli_select_db($connect,$nom_BD);
 
 if (isset($_POST['login'],$_POST['password'],$_POST['connexion'])) {
     $login = $_POST['login'];
     $password = $_POST['password'];
     if ($login !="" && $password !="") {
-        $select = "SELECT * FROM users WHERE login = '$login' and password = '$password'";
+        $select = "SELECT * FROM users WHERE login = '$login' and mdp = '$password'";
         $requete_log = mysqli_query($connect,$select);
         if (mysqli_num_rows($requete_log) == 1 ) {
             session_start();
