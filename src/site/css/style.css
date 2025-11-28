@@ -232,14 +232,8 @@ header {
     justify-content: center;
     gap: 10px;
     box-shadow: 0 5px 20px rgba(184, 74, 47, 0.1);
-    animation: errorFade 0.25s ease-out;
 }
 
-/* Animation */
-@keyframes errorFade {
-    from { opacity: 0; transform: translateY(-4px); }
-    to { opacity: 1; transform: translateY(0); }
-}
 
 /* Conteneur du formulaire */
 .form-container {
