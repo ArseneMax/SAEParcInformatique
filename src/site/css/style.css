@@ -229,6 +229,7 @@ header {
     margin-bottom: 25px;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     box-shadow: 0 5px 20px rgba(184, 74, 47, 0.1);
     animation: errorFade 0.25s ease-out;
