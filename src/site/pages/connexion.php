@@ -7,7 +7,7 @@ include("../fragment/navbar.php");
     <div class='form-container'>
         <h1 class='form-title'>Connexion</h1>
         <form method='post' action='actions/actionConnexion.php'>";
-    include("../fragment/formConnexion.html");
+    <?php include("../fragment/formConnexion.html"); ?>
     </div>
 </div>
 <?php
