@@ -9,15 +9,15 @@ include("../fragment/navbar.php");
         <form method='post' action='actions/actionConnexion.php'>
     <?php include("../fragment/formConnexion.html"); ?>
     </div>
-</div>
 <?php
 if (isset($_GET['error'])){
-    echo"<div>
+    echo"<div class='connexion-error'>
             <p>Identifiant ou mot de passe incorrect</p>
             
     </div>";
 }
 ?>
+    </div>
 </body>
 
 </html>
