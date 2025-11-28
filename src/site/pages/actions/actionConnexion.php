@@ -21,6 +21,10 @@ if (isset($_POST['login'],$_POST['password'],$_POST['connexion'])) {
             header("location:../connexion.php?error");
         }
     }else{
+        echo"<div>
+            <p>Identifiant ou mot de passe incorrect</p>
+            
+</div>";
         header('location:../connexion.php?error');
     }
 }
