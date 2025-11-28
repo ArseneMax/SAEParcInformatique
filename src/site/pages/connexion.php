@@ -11,11 +11,11 @@ include("../fragment/navbar.php");
     </div>
 </div>
 <?php
-if ($_GET['error']){
+if (isset($_GET['error'])){
     echo"<div>
             <p>Identifiant ou mot de passe incorrect</p>
             
-</div>";
+    </div>";
 }
 ?>
 </body>
