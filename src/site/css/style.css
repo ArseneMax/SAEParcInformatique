@@ -217,7 +217,6 @@ header {
   padding: 20px;
 }
 .connexion-error {
-    background: rgba(184, 74, 47, 0.15); /* légère teinte terracotta */
     border: 1px solid rgba(184, 74, 47, 0.4);
     color: #b84a2f; /* terracotta foncé */
     padding: 15px 20px;
@@ -227,8 +226,10 @@ header {
     display: flex;
     align-items: center;
     gap: 10px;
-    animation: errorFade 0.3s ease-out;
     box-shadow: 0 5px 20px rgba(184, 74, 47, 0.1);
+}
+.connexion-error i {
+    font-size: 18px;
 }
 
 
