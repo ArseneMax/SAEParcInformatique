@@ -12,7 +12,6 @@ include("../fragment/navbar.php");
 if (isset($_GET['error'])){
     echo"<div class='connexion-error'>
             Identifiant ou mot de passe incorrect
-            
     </div>";
 }
 ?>

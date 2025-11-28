@@ -208,17 +208,21 @@ header {
 
 /* ****************************************** CONNEXION  ******************************************************** */
 
+/* Page de connexion */
 .connexion-page {
-  min-height: calc(100vh - 80px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, rgba(247, 176, 136, 0.1) 0%, rgba(184, 74, 47, 0.1) 100%);
-  padding: 20px;
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(247, 176, 136, 0.1) 0%, rgba(184, 74, 47, 0.1) 100%);
+    padding: 20px;
 }
+
+/* Message d’erreur */
 .connexion-error {
+    background: rgba(184, 74, 47, 0.15); /* fond terracotta pastel */
     border: 1px solid rgba(184, 74, 47, 0.4);
-    color: #b84a2f; /* terracotta foncé */
+    color: #b84a2f;
     padding: 15px 20px;
     border-radius: 12px;
     font-size: 15px;
@@ -227,32 +231,38 @@ header {
     align-items: center;
     gap: 10px;
     box-shadow: 0 5px 20px rgba(184, 74, 47, 0.1);
-}
-.connexion-error i {
-    font-size: 18px;
+    animation: errorFade 0.25s ease-out;
 }
 
+/* Animation */
+@keyframes errorFade {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
+/* Conteneur du formulaire */
 .form-container {
-  background: white;
-  padding: 50px 40px;
-  border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  max-width: 450px;
-  width: 100%;
+    background: white;
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    max-width: 450px;
+    width: 100%;
 }
 
+/* Titre formulaire */
 .form-title {
-  font-size: 32px;
-  font-weight: bold;
-  color: var(--terracotta);
-  margin-bottom: 40px;
-  text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--terracotta);
+    margin-bottom: 40px;
+    text-align: center;
 }
 
+/* Groupes du form */
 .form-group {
-  margin-bottom: 25px;
-  text-align: left;
+    margin-bottom: 25px;
+    text-align: left;
 }
 
 label {
