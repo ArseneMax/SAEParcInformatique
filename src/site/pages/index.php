@@ -2,6 +2,7 @@
 
 include("../fragment/header.html");
 include("../fragment/navbar.php");
+echo "</header>";
 
 
 echo"<body>

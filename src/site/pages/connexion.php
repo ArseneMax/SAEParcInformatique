@@ -1,6 +1,7 @@
 <?php
 include("../fragment/header.html");
 include("../fragment/navbar.php");
+echo "</header>"
 ?>
 <body>
 <div class='connexion-page'>

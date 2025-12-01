@@ -20,5 +20,5 @@ echo"<header>
             echo"</ul>
     </nav>
     </div>
-</header>";
+";
 ?>
