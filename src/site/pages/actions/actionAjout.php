@@ -1,7 +1,7 @@
 <?php
 $nom_BD = "parkit";
 
-$connect = mysqli_connect("localhost", "root", "");
+$connect = mysqli_connect("localhost", "admin", "!sae2025!");
 $db = mysqli_select_db($connect, $nom_BD);
 
 if (isset($_POST['login'], $_POST['password'], $_POST['creation'])) {
