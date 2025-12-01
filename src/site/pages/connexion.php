@@ -9,6 +9,8 @@ echo "</header>"
         <h1 class='form-title'>Connexion</h1>
         <form method='post' action='actions/actionConnexion.php'>
     <?php include("../fragment/formConnexion.html"); ?>
+            <button type="submit" class="form-button" name="connexion">Se connecter</button>
+        </form>
 <?php
 if (isset($_GET['error'])){
     echo"<div class='connexion-error'>
