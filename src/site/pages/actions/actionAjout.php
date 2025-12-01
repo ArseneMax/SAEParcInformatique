@@ -1,5 +1,5 @@
 <?php
-$nom_BD = "parkit";
+$nom_BD = "PARKIT";
 
 $connect = mysqli_connect("localhost", "admin", "!sae2025!");
 $db = mysqli_select_db($connect, $nom_BD);
