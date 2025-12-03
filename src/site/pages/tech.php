@@ -3,7 +3,7 @@ include("../fragment/header.html");
 include("../fragment/navbar.php");
 
 if (isset($_SESSION['login'])) {
-if ($_SESSION['login'] == 'tech1') {
+
     echo " 
             <div id='topBlackBar'/>
             <div class='sub-nav-container'>
@@ -15,7 +15,7 @@ if ($_SESSION['login'] == 'tech1') {
                 </nav>
             </div>
         </header>";
-    }
+
 }
 ?>
 
