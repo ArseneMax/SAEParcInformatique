@@ -35,6 +35,11 @@ h1 {
   margin-bottom: 30px;
 }
 
+h2 {
+    color: var(--terracotta);
+    margin-bottom: 20px;
+}
+
 .welcome-text {
   font-size: 20px;
   color: #666;
@@ -393,3 +398,36 @@ td {
   padding: 12px;
   color: var(--dark);
 }
+
+
+/* ****************************************** AdminWeb ******************************************************** */
+.duplication-error {
+    background: rgba(184, 74, 47, 0.15);
+    color: #b84a2f;
+    padding: 15px 20px;
+    border-radius: 12px;
+    font-size: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 5px 20px rgba(184, 74, 47, 0.1);
+}
+
+.success {
+    background: rgba(47, 184, 74, 0.15);
+    color: #b84a2f;
+    padding: 15px 20px;
+    border-radius: 12px;
+    font-size: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 5px 20px rgba(184, 74, 47, 0.1);
+}
+
