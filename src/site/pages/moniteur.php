@@ -1,18 +1,9 @@
 <?php
 include("../fragment/header.html");
 include("../fragment/navbar.php");
-echo " 
-    <div id='topBlackBar'/>
-    <div class='sub-nav-container'>
-        <nav>
-            <ul class='sub-nav-menu sub-nav-left'>
-                <li><a href='ordinateur.php' class='sub-bouton-nav'>Ordinateur</a></li>
-                <li><a href='moniteur.php' class='sub-bouton-nav'>Moniteur</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>";
+include("../fragment/navbarTech.php");
 ?>
+</header>
 
 
 <body>
@@ -20,7 +11,6 @@ echo "
 $connect = mysqli_connect("localhost", "admin", "!sae2025!");
 $db = mysqli_select_db($connect, "PARKIT");
 if (isset($_SESSION['login'])) {
-
 
     $sql = "SELECT * FROM moniteur";
     $result = mysqli_query($connect, $sql);

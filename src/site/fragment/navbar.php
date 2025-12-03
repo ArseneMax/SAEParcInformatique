@@ -6,7 +6,7 @@
                 <?php
                 session_start();
                 if (isset($_SESSION['login'])) {
-                    echo "<li><a href='tech.php' class='bouton-nav'>Inventaire</a></li>";
+                    echo "<li><a href='inventory.php' class='bouton-nav'>Inventaire</a></li>";
                     if ($_SESSION['login'] == 'adminweb') {
                         echo"<li><a href='adminweb.php' class='bouton-nav'>Admin</a></li>";
                     }
