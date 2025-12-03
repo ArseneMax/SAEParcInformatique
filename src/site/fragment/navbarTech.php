@@ -1,4 +1,4 @@
-<div id='topBlackBar'/>
+
     <div class='sub-nav-container'>
         <nav>
             <ul class='sub-nav-menu sub-nav-left'>

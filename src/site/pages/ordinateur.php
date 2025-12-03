@@ -1,9 +1,9 @@
 <?php
 include("../fragment/header.html");
 include("../fragment/navbar.php");
+echo"</header>";
 include("../fragment/navbarTech.php");
 ?>
-</header>
 
 <body>
 <?php
