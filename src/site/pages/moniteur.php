@@ -8,8 +8,7 @@ include("../fragment/navbarTech.php");
 
 <body>
 <?php
-$connect = mysqli_connect("localhost", "admin", "!sae2025!");
-$db = mysqli_select_db($connect, "PARKIT");
+include("../fonctions/database.php");
 if (isset($_SESSION['login'])) {
 
     $sql = "SELECT * FROM moniteur";

@@ -1,8 +1,7 @@
 <?php
 $nom_BD = "PARKIT";
 
-$connect = mysqli_connect("localhost", "admin", "!sae2025!");
-$db = mysqli_select_db($connect, $nom_BD);
+include("../../fonctions/database.php");
 
 if (isset($_POST['login'], $_POST['password'], $_POST['creation'])) {
     $login = $_POST['login'];
