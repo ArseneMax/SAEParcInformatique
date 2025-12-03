@@ -3,10 +3,10 @@
         <nav>
             <ul class='nav-menu nav-left'>
                 <li><a href='index.php' class='bouton-nav'>Accueil</a></li>
-                <li><a href='tech.php' class='bouton-nav'>Technicien</a></li>
                 <?php
                 session_start();
                 if (isset($_SESSION['login'])) {
+                    echo "<li><a href='tech.php' class='bouton-nav'>Inventaire</a></li>";
                     if ($_SESSION['login'] == 'adminweb') {
                         echo"<li><a href='adminweb.php' class='bouton-nav'>Admin</a></li>";
                     }
