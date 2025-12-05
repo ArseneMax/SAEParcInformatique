@@ -29,7 +29,7 @@ if (isset($_SESSION['login']) && isset($_POST['NameMachine'])) {
 
     while ($ligne = mysqli_fetch_row($result)) {
 
-        echo '<form method="post" action="actions/actionModifierOrdinateur.php">
+        echo '<form method="post" action="actions/actionModifierOrdinateur.php" id="modifierOrdinateur">
                 <div class="form-group">
                     <label>' . $categorie[0] . '</label>
                     <input type="text" name="NAME" value="' . $_POST['NameMachine'] . '" readonly>
@@ -37,13 +37,27 @@ if (isset($_SESSION['login']) && isset($_POST['NameMachine'])) {
 
         for ($i = 1; $i < count($categorie); $i++) {
 
-            $type = ($categorie[$i] == 'RAM_MB' || $categorie[$i] == 'DISK_GB') ? 'number' : 'text';
+            $type = ($categorie[$i] == 'RAM_MB' || $categorie[$i] == 'DISK_GB') ? 'number' : (($categorie[$i] == 'OS' || $categorie[$i] == 'MANUFACTURER') ? 'select' : 'text');
 
-            echo '<div class="form-group">
-                    <label>' . $categorie[$i] . '</label>
-                    <input type="' . $type . '" name="' . $categorie[$i] . '" 
-                           value="' . $ligne[$i] . '" required>
-                </div>';
+            echo '<div class="form-group">';
+            if ($type == 'select') {
+                echo '<label for="' . $categorie[$i] . '">' . $categorie[$i] . '</label>
+                      <select name="' . $categorie[$i] . '" id="' . $categorie[$i] . '" form="modifierOrdinateur">';
+                $table = ($categorie[$i] == 'MANUFACTURER') ? 'constructeur' : 'OS';
+
+                $sql1 = "SELECT * FROM " . $table;
+                $result1 = mysqli_query($connect, $sql1);
+                while ($ligne1 = mysqli_fetch_row($result1)) {
+                    echo '<option value="' . $ligne1[0] . '">' . $ligne1[0] . '</option>';
+                }
+                echo '</select>';
+            }else{
+                echo '<label>' . $categorie[$i] . '</label>
+                        <input type="' . $type . '" name="' . $categorie[$i] . '" 
+                           value="' . $ligne[$i] . '" required>';
+            }
+
+            echo  '</div>';
         }
 
         echo '<button type="submit" class="form-button" name="modifier">Modifier</button>
