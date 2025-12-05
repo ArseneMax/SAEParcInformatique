@@ -261,7 +261,6 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(247, 176, 136, 0.1) 0%, rgba(184, 74, 47, 0.1) 100%);
     padding: 20px;
 }
 
