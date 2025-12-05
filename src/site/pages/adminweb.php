@@ -16,6 +16,12 @@ echo "</header>"
             Identifiant existant !
     </div>";
         }
+        if (isset($_GET['success'])) {
+            echo "<div class='success'>
+            Identifiant bien ajouté
+    </div>";
+        }
+
         ?>
     </div>
 </div>
