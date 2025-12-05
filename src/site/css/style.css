@@ -401,6 +401,95 @@ td {
   color: var(--dark);
 }
 
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin: 20px 0;
+    padding: 20px 0;
+    flex-wrap: wrap;
+}
+
+.pagination a,
+.pagination span {
+    padding: 8px 12px;
+    text-decoration: none;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    color: var(--dark);
+    transition: all 0.3s ease;
+    background-color: white;
+}
+
+.pagination a:hover {
+    background-color: var(--terracotta);
+    color: white;
+    border-color: var(--terracotta);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(184, 74, 47, 0.3);
+}
+
+.pagination .page-active {
+    background-color: var(--terracotta-dark);
+    color: white;
+    border-color: var(--terracotta-dark);
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(139, 54, 34, 0.2);
+}
+
+.pagination .page-disabled {
+    background-color: #f5f5f5;
+    color: #999;
+    cursor: not-allowed;
+    border-color: #e0e0e0;
+}
+
+.pagination .page-dots {
+    border: none;
+    background: none;
+    cursor: default;
+    padding: 8px 4px;
+    color: var(--terracotta);
+}
+
+.page-jump {
+    margin-left: 20px;
+    padding-left: 20px;
+    border-left: 2px solid var(--apricot);
+}
+
+.page-jump form button {
+    padding: 6px 12px;
+    background-color: var(--terracotta-dark);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(139, 54, 34, 0.2);
+}
+
+.page-jump form button:hover {
+    background-color: #6B2618;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(139, 54, 34, 0.4);
+}
+
+.page-jump form input {
+    width: 60px;
+    padding: 6px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.page-jump form input:focus {
+    outline: none;
+    border-color: var(--terracotta);
+    box-shadow: 0 0 0 4px rgba(184, 74, 47, 0.1);
+}
 
 /* ****************************************** AdminWeb ******************************************************** */
 .duplication-error {
@@ -432,4 +521,5 @@ td {
     gap: 10px;
     box-shadow: 0 5px 20px rgba(184, 74, 47, 0.1);
 }
+
 
