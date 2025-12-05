@@ -2,6 +2,7 @@
 include("../fragment/header.html");
 include("../fragment/navbar.php");
 echo "</header>";
+include("../fragment/navbarAdmin.php");
 
 if (!isset($_SESSION['login']) || $_SESSION['login'] != 'adminweb') {
     header('Location: index.php');

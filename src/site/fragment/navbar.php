@@ -9,7 +9,6 @@
                     echo "<li><a href='inventory.php' class='bouton-nav'>Inventaire</a></li>";
                     if ($_SESSION['login'] == 'adminweb') {
                         echo"<li><a href='adminweb.php' class='bouton-nav'>Admin</a></li>";
-                        echo"<li><a href='gestionInfos.php' class='bouton-nav'>Gestion</a></li>";
                     }
                 }
                 ?>
