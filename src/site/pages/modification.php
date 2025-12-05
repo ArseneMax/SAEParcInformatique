@@ -48,7 +48,8 @@ if (isset($_SESSION['login']) && isset($_POST['NameMachine'])) {
                 $sql1 = "SELECT * FROM " . $table;
                 $result1 = mysqli_query($connect, $sql1);
                 while ($ligne1 = mysqli_fetch_row($result1)) {
-                    echo '<option value="' . $ligne1[0] . '">' . $ligne1[0] . '</option>';
+                    if ($ligne1[0]==$ligne[$i]){ $etat="selected";}else{$etat="";}
+                    echo '<option value="' . $ligne1[0] . '" '.$etat.'>' . $ligne1[0] . '</option>';
                 }
                 echo '</select>';
             }else{
@@ -101,7 +102,8 @@ if (isset($_SESSION['login']) && isset($_POST['SerialMoniteur'])) {
                 $sql1 = "SELECT * FROM constructeur";
                 $result1 = mysqli_query($connect, $sql1);
                 while ($ligne1 = mysqli_fetch_row($result1)) {
-                    echo '<option value="' . $ligne1[0] . '">' . $ligne1[0] . '</option>';
+                    if ($ligne1[0]==$ligne[$i]){ $etat="selected";}else{$etat="";}
+                    echo '<option value="' . $ligne1[0] . '" '.$etat.'>' . $ligne1[0] . '</option>';
                 }
                 echo '</select>';
             }else{
