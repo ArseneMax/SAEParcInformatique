@@ -5,6 +5,8 @@
                 <li><a href='ordinateur.php' class='sub-bouton-nav'>Ordinateur</a></li>
                 <li><a href='moniteur.php' class='sub-bouton-nav'>Moniteur</a></li>
                 <li><a href='modifierMachine.php' class='sub-bouton-nav'>Modifier Machine</a></li>
+                <li><a href='ajouterMachine.php' class='sub-bouton-nav'>Ajouter Ordinateur</a></li>
+                <li><a href='ajouterMoniteur.php' class='sub-bouton-nav'>Ajouter Moniteur</a></li
             </ul>
         </nav>
     </div>
