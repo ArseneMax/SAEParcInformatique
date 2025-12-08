@@ -10,6 +10,7 @@
                         echo"<li><a href='modifierMachine.php' class='sub-bouton-nav'>Modifier Machine</a></li>
                             <li><a href='ajouterMachine.php' class='sub-bouton-nav'>Ajouter Ordinateur</a></li>
                             <li><a href='ajouterMoniteur.php' class='sub-bouton-nav'>Ajouter Moniteur</a></li>
+                            <li><a href='supression.php' class='sub-bouton-nav'>Supprimer Machine</a></li>
                             <li><a href='rebut.php' class='sub-bouton-nav'>Liste de rebut</a></li>";
                     }
                 }
