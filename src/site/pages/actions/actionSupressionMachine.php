@@ -24,9 +24,6 @@ if (isset($_POST['ordinateur'])) {
 
 
     mysqli_stmt_close($stmt);
-} else {
-
-    header("Location: ../inventory.php?error");
 }
 
 if (isset($_POST['moniteur'])) {
