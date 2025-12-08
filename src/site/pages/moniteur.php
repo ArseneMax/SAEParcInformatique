@@ -23,7 +23,7 @@ if (isset($_SESSION['login'])) {
     $total_pages = ceil($total_lignes / $lignes_par_page);
 
 
-    $sql = "SELECT * FROM moniteur LIMIT $lignes_par_page OFFSET $offset";
+    $sql = "SELECT * FROM moniteur WHERE statut = 'actif' LIMIT $lignes_par_page OFFSET $offset";
     $result = mysqli_query($connect, $sql);
 
     echo '<div class="tech-content">';
@@ -43,6 +43,7 @@ if (isset($_SESSION['login'])) {
             <tbody>';
 
     while ($ligne = mysqli_fetch_row($result)) {
+        array_pop($ligne);
         echo "<tr>";
         foreach ($ligne as $valeur) {
             echo "<td>" . htmlspecialchars($valeur) . "</td>";
