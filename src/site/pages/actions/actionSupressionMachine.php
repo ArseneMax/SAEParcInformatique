@@ -48,9 +48,6 @@ if (isset($_POST['moniteur'])) {
 
 
     mysqli_stmt_close($stmt);
-} else {
-
-    header("Location: ../inventory.php?error");
 }
 
 ?>
