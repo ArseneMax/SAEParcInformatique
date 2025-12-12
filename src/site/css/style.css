@@ -111,6 +111,16 @@ header {
   box-shadow: 0 4px 12px rgba(139, 54, 34, 0.4);
 }
 
+#bouton-creation {
+    background-color: #BA7B7B;
+    color: white;
+    font-weight: bold;
+}
+
+#bouton-creation:hover {
+    box-shadow: 0 4px 12px rgba(139, 54, 34, 0.4);
+}
+
 /* ****************************************** TECHNICIEN  ******************************************************** */
 /* ****************************************** SOUS NAVBAR  ******************************************************** */
 
@@ -627,6 +637,64 @@ td {
     text-decoration: underline;
 }
 
+
+/* Style pour le paragraphe contenant le format CSV */
+.csv-format-info {
+    font-size: 12px;         /* Taille de police plus petite */
+    color: var(--dark);      /* Couleur du texte */
+    white-space: nowrap;     /* Empêche le texte de se diviser sur plusieurs lignes */
+    overflow: hidden;        /* Cache le texte qui dépasse */
+    text-overflow: ellipsis; /* Affiche "..." à la fin si le texte dépasse */
+    background-color: #f9f9f9;
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    max-width: 100%;         /* Limite la largeur maximale */
+    box-sizing: border-box; /* S'assure que le padding est inclus dans la largeur totale */
+}
+
+/* ****************************************** MENU DEROULANT (SELECT) ******************************************************** */
+
+/* Style général du select */
+.csv-upload-form select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    color: var(--dark);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    appearance: none; /* Enlève le style par défaut du navigateur */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px; /* Espace pour la flèche */
+}
+
+/* Style du select lors du focus */
+.csv-upload-form select:focus {
+    outline: none;
+    border-color: var(--terracotta);
+    background-color: white;
+    box-shadow: 0 0 0 4px rgba(184, 74, 47, 0.1);
+}
+
+/* Style des options dans le select */
+.csv-upload-form select option {
+    background-color: white;
+    color: var(--dark);
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* Survol des options */
+.csv-upload-form select option:hover {
+    background-color: var(--terracotta);
+    color: white;
+}
+
 /* ****************************************** STATISTIQUES ******************************************************** */
 
 .statistique {
@@ -724,7 +792,7 @@ td {
 .statistique .card .row {
     display: flex;
     justify-content: space-between;
-    gap: 30px;
+    gap: 14px;
     flex-wrap: wrap;
 }
 
@@ -837,4 +905,15 @@ td {
     border-color: var(--terracotta);
     box-shadow: 0 0 0 4px rgba(184, 74, 47, 0.1);
 }
+
+/* Ajout d'espace entre les blocs de données spécifiques */
+.statistique .card-resume .col .block {
+    margin-bottom: 20px; /* Espacement entre les différents blocs dans la colonne */
+}
+
+/* Spécifique pour les sections individuelles entre les résultats */
+.statistique .card-resume .col .pack {
+    margin-bottom: 25px;
+}
+
 

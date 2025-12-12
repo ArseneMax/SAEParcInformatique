@@ -36,14 +36,21 @@ function median($arr) {
     }
 }
 function ecartType($arr) {
+    return sqrt(variance($arr));
+}
+
+function variance($arr) {
     $n = count($arr);
 
+    // Si le tableau est vide, retourne null (pas de variance possible)
     if ($n === 0) {
         return null;
     }
 
+    // Calcul de la moyenne
     $avg = array_sum($arr) / $n;
 
+    // Somme des carrés des écarts à la moyenne
     $sumSquares = array_sum(array_map(
         function ($v) use ($avg) {
             return pow($v - $avg, 2);
@@ -51,8 +58,8 @@ function ecartType($arr) {
         $arr
     ));
 
-
-    return sqrt($sumSquares / $n);
+    // Variance pour un échantillon (diviser par n-1 pour éviter le biais)
+    return $sumSquares / ($n - 1);
 }
 
 function h($s) {

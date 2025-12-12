@@ -25,6 +25,8 @@
                     echo "<li><a href='logout.php' class='bouton-nav' id='bouton-connexion'> Déconnexion </a></li>";}
                 else {
                     echo "<li><a href='connexion.php' class='bouton-nav' id='bouton-connexion'>Connexion</a></li>";
+                    echo "<li><a href='creerCompte.php' class='bouton-nav' id='bouton-creation'>Inscription</a></li>";
+
                 }?>
             </ul>
         </nav>
