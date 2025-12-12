@@ -3,6 +3,7 @@
         <nav>
             <ul class='nav-menu nav-left'>
                 <li><a href='index.php' class='bouton-nav'>Accueil</a></li>
+                <li><a href='proba.php' class='bouton-nav'>Statistiques</a></li>
                 <?php
                 session_start();
                 if (isset($_SESSION['login'])) {
