@@ -545,4 +545,296 @@ td {
     box-shadow: 0 5px 20px rgba(184, 74, 47, 0.1);
 }
 
+/* ****************************************** Formulaire d'upload CSV ******************************************************** */
+.csv-upload-form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.csv-upload-form label {
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 8px;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.csv-upload-form input[type="file"] {
+    display: block;
+    margin: 15px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.csv-upload-form input[type="file"]:focus {
+    outline: none;
+    border-color: var(--terracotta);
+    background-color: white;
+    box-shadow: 0 0 0 4px rgba(184, 74, 47, 0.1);
+}
+
+.csv-upload-form button {
+    background-color: var(--terracotta-dark);
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.csv-upload-form button:hover {
+    background-color: #6B2618;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 54, 34, 0.4);
+}
+
+.csv-upload-form button:active {
+    transform: translateY(0);
+}
+
+.csv-upload-form hr {
+    margin: 30px 0;
+    border-top: 1px solid var(--terracotta);
+    opacity: 0.3;
+}
+
+.csv-upload-form .info-message {
+    font-size: 14px;
+    color: var(--dark);
+    margin-top: 20px;
+}
+
+.csv-upload-form .info-message a {
+    color: var(--terracotta);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.csv-upload-form .info-message a:hover {
+    text-decoration: underline;
+}
+
+/* ****************************************** STATISTIQUES ******************************************************** */
+
+.statistique {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.statistique .card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.statistique .card h2 {
+    font-size: 36px;
+    color: var(--terracotta);
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.statistique .card .row {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.statistique .card .col {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 20px;
+}
+
+.statistique .card .col strong {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--dark);
+    font-weight: 600;
+}
+
+.statistique table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.statistique table thead {
+    background-color: var(--terracotta-dark);
+    color: white;
+}
+
+.statistique table th {
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.statistique table tbody {
+    background-color: #fafafa;
+}
+
+.statistique table tbody tr {
+    transition: all 0.3s ease;
+}
+
+.statistique table tbody tr:hover {
+    background-color: #f0f0f0;
+}
+
+.statistique table td {
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+    color: var(--dark);
+}
+
+.statistique .row .col h3 {
+    font-size: 24px;
+    color: var(--terracotta);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+/* Colonnes à l'intérieur des cartes */
+.statistique .card .row {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* Flexibilité des colonnes */
+.statistique .card .col {
+    flex: 1;
+    min-width: 250px;
+    max-width: 350px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+/* Styles des données dans les colonnes */
+.statistique .card .col p {
+    font-size: 16px;
+    color: var(--dark);
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+/* Style pour les titres à l'intérieur des colonnes */
+.statistique .card .col h3 {
+    font-size: 18px;
+    color: var(--terracotta);
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* Le contenu des colonnes */
+.statistique .card .col .data {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--dark);
+    margin-top: 10px;
+}
+
+/* Alignement des données dans les colonnes */
+.statistique .card .col .data {
+    text-align: center; /* Centrer les données pour une apparence plus uniforme */
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.statistique .pagination a,
+.statistique .pagination span {
+    padding: 8px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    color: var(--dark);
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+.statistique .pagination .page-active {
+    background-color: var(--terracotta-dark);
+    color: white;
+    border-color: var(--terracotta-dark);
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(139, 54, 34, 0.2);
+}
+
+.statistique .pagination .page-disabled {
+    background-color: #f5f5f5;
+    color: #999;
+    cursor: not-allowed;
+    border-color: #e0e0e0;
+}
+
+.statistique .pagination .page-dots {
+    border: none;
+    background: none;
+    cursor: default;
+    padding: 8px 4px;
+    color: var(--terracotta);
+}
+
+/* Styling pour les boutons "Page Jump" */
+.statistique .page-jump form button {
+    padding: 8px 16px;
+    background-color: var(--terracotta-dark);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.statistique .page-jump form button:hover {
+    background-color: #6B2618;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(139, 54, 34, 0.4);
+}
+
+.statistique .page-jump form input {
+    width: 60px;
+    padding: 6px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.statistique .page-jump form input:focus {
+    outline: none;
+    border-color: var(--terracotta);
+    box-shadow: 0 0 0 4px rgba(184, 74, 47, 0.1);
+}
 

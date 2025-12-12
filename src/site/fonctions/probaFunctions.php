@@ -1,28 +1,21 @@
 <?php
-function read_csv_assoc($path, $delimiter = ',') {
-    if (!file_exists($path) || !is_readable($path)) {
-        return [];
-    }
+function read_csv_assoc($file) {
     $rows = [];
-    if (($handle = fopen($path, 'r')) !== false) {
-        $headers = fgetcsv($handle, 0, $delimiter);
-        if ($headers === false) { fclose($handle); return []; }
-        // trim headers
-        $headers = array_map('trim', $headers);
-        while (($data = fgetcsv($handle, 0, $delimiter)) !== false) {
-            // if row length differs from headers, pad with nulls
-            if (count($data) < count($headers)) {
-                $data = array_pad($data, count($headers), null);
-            }
-            $row = [];
-            foreach ($headers as $i => $h) {
-                $row[$h] = isset($data[$i]) ? trim($data[$i]) : null;
-            }
-            $rows[] = $row;
+    if (($handle = fopen($file, 'r')) !== false) {
+        $header = fgetcsv($handle);  // Lecture de l'entête
+        while (($data = fgetcsv($handle)) !== false) {
+            $rows[] = array_combine($header, $data);
         }
         fclose($handle);
     }
     return $rows;
+}
+
+function getUploadedCSV($fieldName) {
+    if (!isset($_FILES[$fieldName]) || $_FILES[$fieldName]['error'] !== UPLOAD_ERR_OK) {
+        return null;
+    }
+    return $_FILES[$fieldName]['tmp_name'];
 }
 
 // Utility functions
@@ -42,6 +35,26 @@ function median($arr) {
         return ($arr[$mid - 1] + $arr[$mid]) / 2;
     }
 }
+function ecartType($arr) {
+    $n = count($arr);
+
+    if ($n === 0) {
+        return null;
+    }
+
+    $avg = array_sum($arr) / $n;
+
+    $sumSquares = array_sum(array_map(
+        function ($v) use ($avg) {
+            return pow($v - $avg, 2);
+        },
+        $arr
+    ));
+
+
+    return sqrt($sumSquares / $n);
+}
+
 function h($s) {
     return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8');
 }

@@ -2,13 +2,33 @@
 include("../fragment/header.html");
 include("../fragment/navbar.php");
 require_once("../fonctions/probaFunctions.php");
-echo "</header>";
+echo "</header>"; ?>
+<div class="main-content">
+<h1>Rapport statistiques — CSV</h1>
 
+<form method="post" enctype="multipart/form-data" class="csv-upload-form">
+    <label>Connections.csv :</label>
+    <input type="file" name="csv_connections" accept=".csv"><br><br>
 
-$pathConnections = '../csv/connections.csv';
-$pathDevices     = '../csv/inventory_devices.csv';
-$pathMonitors    = '../csv/inventory_monitors2.csv';
+    <label>Devices.csv :</label>
+    <input type="file" name="csv_devices" accept=".csv"><br><br>
 
+    <label>Monitors.csv :</label>
+    <input type="file" name="csv_monitors" accept=".csv"><br><br>
+
+    <button type="submit">Charger les CSV</button>
+</form>
+<hr>
+</div>
+
+<?php
+$pathConnections = getUploadedCSV('csv_connections');
+$pathDevices     = getUploadedCSV('csv_devices');
+$pathMonitors    = getUploadedCSV('csv_monitors');
+
+if (!$pathConnections || !$pathDevices || !$pathMonitors) {
+    die("<b>Veuillez charger les trois fichiers CSV pour afficher les statistiques.</b>");
+}
 
 $connections = read_csv_assoc($pathConnections);
 $devices     = read_csv_assoc($pathDevices);
@@ -69,6 +89,7 @@ foreach ($connections as $c) {
 $unique_users = count($users_set);
 $avg_duration = $connections_count > 0 ? ($total_duration / $connections_count) : 0;
 $median_duration = median($durations);
+$ecart_type_duration = ecartType($durations);
 
 // ---- Monitors statistics ----
 $monitors_count = count($monitors);
@@ -98,9 +119,7 @@ foreach ($monitors as $m) {
 arsort($monitors_per_device);
 $top_devices_by_monitors = array_slice($monitors_per_device, 0, 10, true);
 ?>
-
-<h1>Rapport statistiques — CSV</h1>
-
+<div class="statistique">
 <div class="card">
     <h2>Résumé global</h2>
     <div class="row">
@@ -114,6 +133,7 @@ $top_devices_by_monitors = array_slice($monitors_per_device, 0, 10, true);
             <strong>Utilisateurs uniques (connexions) :</strong> <?php echo h($unique_users); ?><br>
             <strong>Durée totale des sessions :</strong> <?php echo secondsToTime($total_duration); ?><br>
             <strong>Durée moyenne par session :</strong> <?php echo secondsToTime($avg_duration); ?><br>
+            <strong>Ecart type de la durée des sessions :</strong> <?php echo secondsToTime($ecart_type_duration); ?><br>
             <br>
         </div>
     </div>
@@ -123,7 +143,7 @@ $top_devices_by_monitors = array_slice($monitors_per_device, 0, 10, true);
     <h2>Devices — répartitions & agrégats</h2>
     <div class="row">
         <div class="col">
-            <h3>Par fabricant</h3>
+            <h3>Par Manufacturer</h3>
             <table>
                 <thead><tr><th>Fabricant</th><th>Nombre</th></tr></thead>
                 <tbody>
@@ -134,7 +154,7 @@ $top_devices_by_monitors = array_slice($monitors_per_device, 0, 10, true);
             </table>
         </div>
         <div class="col">
-            <h3>Par type</h3>
+            <h3>Par Type</h3>
             <table>
                 <thead><tr><th>Type</th><th>Nombre</th></tr></thead>
                 <tbody>
@@ -145,7 +165,7 @@ $top_devices_by_monitors = array_slice($monitors_per_device, 0, 10, true);
             </table>
         </div>
         <div class="col">
-            <h3>Par Systeme d'exploitation</h3>
+            <h3>Par Operating System</h3>
             <table>
                 <thead><tr><th>Systeme d'exploitation</th><th>Nombre</th></tr></thead>
                 <tbody>
@@ -177,19 +197,8 @@ $top_devices_by_monitors = array_slice($monitors_per_device, 0, 10, true);
                 </tbody>
             </table>
         </div>
-<!--        <div class="col">-->
-<!--            <h3>Par Salle</h3>-->
-<!--            <table>-->
-<!--                <thead><tr><th>Salle</th><th>Nombre</th></tr></thead>-->
-<!--                <tbody>-->
-<!--                --><?php //foreach ($by_room as $k=>$v): ?>
-<!--                    <tr><td>--><?php //echo h($k); ?><!--</td><td>--><?php //echo h($v); ?><!--</td></tr>-->
-<!--                --><?php //endforeach; ?>
-<!--                </tbody>-->
-<!--            </table>-->
-<!--        </div>-->
     </div>
-
+</div>
 
 <div class="card">
     <h2>Connexions — analyses</h2>
@@ -198,12 +207,14 @@ $top_devices_by_monitors = array_slice($monitors_per_device, 0, 10, true);
             <strong>Sessions totales :</strong> <?php echo h($connections_count); ?><br>
             <strong>Utilisateurs uniques :</strong> <?php echo h($unique_users); ?><br>
             <br>
-            <strong>Durée totale (s) :</strong> <?php echo secondsToTime($total_duration); ?><br>
-            <strong>Durée moyenne (s) :</strong> <?php echo secondsToTime($avg_duration); ?><br>
-            <strong>Durée médiane (s) :</strong> <?php echo secondsToTime($median_duration); ?><br>
+            <strong>Durée totale :</strong> <?php echo secondsToTime($total_duration); ?><br>
+            <strong>Durée moyenne :</strong> <?php echo secondsToTime($avg_duration); ?><br>
+            <strong>Durée médiane :</strong> <?php echo secondsToTime($median_duration); ?><br>
+            <strong>Ecart type de la durée des sessions :</strong> <?php echo secondsToTime($ecart_type_duration); ?><br>
             <br>
         </div>
 
+</div>
 </div>
 
 <div class="card">
@@ -243,6 +254,7 @@ $top_devices_by_monitors = array_slice($monitors_per_device, 0, 10, true);
             </table>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>
