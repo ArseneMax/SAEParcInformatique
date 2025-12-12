@@ -251,9 +251,6 @@ $top_devices_by_monitors = array_slice($monitors_per_device, 0, 10, true);
                     <strong>Utilisateurs uniques :</strong> <?php echo h($unique_users); ?>
                 </div>
 
-                <div class="block pack">
-                    <strong>Durée totale :</strong> <?php echo secondsToTime($total_duration); ?>
-                </div>
             </div>
             <div class="col">
                 <div class="block pack">
