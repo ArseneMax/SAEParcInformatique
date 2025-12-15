@@ -61,7 +61,7 @@ if (isset($_POST['submit']) && isset($_POST['type_csv'])) {
             if ($_POST['type_csv'] == "ordinateurs") {
                 $insert = "INSERT INTO ordinateur (NAME, SERIAL, MANUFACTURER, MODEL, TYPE, CPU, RAM_MB, DISK_GB, OS, DOMAIN, LOCATION, BUILDING, ROOM, MACADDR, PURCHASE_DATE, WARRANTY_END) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                $checkSerialQuery = "SELECT COUNT(*) FROM ordinateur WHERE SERIAL = ?";
+                $checkSerialQuery = "SELECT COUNT(*) FROM ordinateur WHERE NAME = ?";
 
                 if (!$connect) {
                     die("Connection failed: " . mysqli_connect_error());
