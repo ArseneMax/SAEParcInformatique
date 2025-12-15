@@ -11,9 +11,8 @@ include("../fragment/navbarTech.php");
             <input type="file" name="csv_file" id="csv_file" accept=".csv" required>
             <label>Selectionner le type du CSV:</label>
             <select name="type_csv">
-                <option value="connexions">Connexions</option>
-                <!---<option value="moniteurs">Moniteurs</option>
-                <option value="ordinateurs">Ordinateurs</option> --->
+                <option value="moniteurs">Moniteurs</option>
+                <option value="ordinateurs">Ordinateurs</option>
             </select>
             <button type="submit" name="submit">Importer</button>
         </form>
@@ -30,6 +29,11 @@ include("../fragment/navbarTech.php");
                 </div>";
             }
 
+        }
+        if (isset($_GET['sucess'])){
+            echo"<div class='connexion-success'>
+                    Ajout(s) effectué(s)
+                </div>";
         }
         ?>
     </div>

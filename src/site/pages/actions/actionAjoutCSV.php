@@ -8,61 +8,106 @@ if (isset($_POST['submit']) && isset($_POST['type_csv'])) {
         if (($handle = fopen($file, 'r')) !== FALSE) {
             fgetcsv($handle);
 
-            if ($_POST['type_csv'] == "connexions") {
-                $insert = "INSERT INTO connexions (login, ip_address, duration_seconds) VALUES (?, ?, ?)";
-                if ($stmt = $connect->prepare($insert)) {
-                    while (($data = fgetcsv($handle, 1000, ',')) !== FALSE) {
-                        if (count($data) == 3) {
-                            $stmt->bind_param('sss', $data[0], $data[1], $data[2]);
-                            $stmt->execute();
-                        } else {
-                            header("Location: ../ajoutCSVMachines.php?error=invalid_columns");
+            if ($_POST['type_csv'] == "moniteurs") {
+                $insert = "INSERT INTO moniteur (SERIAL, MANUFACTURER, MODEL, SIZE_INCH, RESOLUTION, CONNECTOR, ATTACHED_TO) VALUES (?,?,?,?,?,?,?)";
+                $checkSerialQuery = "SELECT COUNT(*) FROM moniteur WHERE SERIAL = ?";
+
+                if (!$connect) {
+                    die("Connection failed: " . mysqli_connect_error());
+                }
+
+                if ($stmt = mysqli_prepare($connect, $insert)) {
+                    if ($checkStmt = mysqli_prepare($connect, $checkSerialQuery)) {
+                        $errorOccurred = false;
+
+                        while (($data = fgetcsv($handle, 1000, ',')) !== FALSE) {
+                            if (count($data) == 7) {
+                                mysqli_stmt_bind_param($checkStmt, 's', $data[0]);
+
+                                mysqli_stmt_execute($checkStmt);
+
+                                mysqli_stmt_bind_result($checkStmt, $count);
+                                mysqli_stmt_fetch($checkStmt);
+
+                                mysqli_stmt_free_result($checkStmt);
+
+                                if ($count > 0) {
+                                    $errorOccurred = true;
+                                } else {
+                                    mysqli_stmt_bind_param($stmt, 'sssisss', $data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $data[6]);
+                                    mysqli_stmt_execute($stmt);
+                                }
+                            } else {
+                                header("Location: ../ajoutCSVMachines.php?error=invalid_columns");
+                                exit();
+                            }
+                        }
+
+                        if ($errorOccurred) {
+                            header("Location: ../ajoutCSVMachines.php?error=serial_exists");
                             exit();
                         }
+
+                        header("Location: ../ajoutCSVMachines.php?sucess");
+                        exit();
+                    } else {
+                        die('Error preparing check serial query: ' . mysqli_error($connect));
                     }
-                    header("Location: ../ajoutCSVMachines.php");
-                    exit();
+                } else {
+                    die('Error preparing insert query: ' . mysqli_error($connect));
                 }
             }
 
-//            if ($_POST['type_csv'] == "moniteurs") {
-//                $insert = "INSERT INTO moniteur (SERIAL, MANUFACTURER, MODEL, SIZE_INCH, RESOLUTION, CONNECTOR, ATTACHED_TO) VALUES (?,?,?,?,?,?,?)";
-//                //$insert = "INSERT INTO moniteur (SERIAL, MANUFACTURER, MODEL, SIZE_INCH, RESOLUTION, CONNECTOR, ATTACHED_TO, statut) VALUES (?,?,?,?,?,?,?,?)";
-//                $checkSerialQuery = "SELECT COUNT(*) FROM moniteur WHERE SERIAL = ?";
-//
-//                if ($stmt = $connect->prepare($insert) && $checkStmt = $connect->prepare($checkSerialQuery)) {
-//                    $errorOccurred = false;
-//
-//                    while (($data = fgetcsv($handle, 1000, ',')) !== FALSE) {
-//                        if (count($data) == 7) {
-//                            $checkStmt->bind_param('s', $data[0]);
-//                            $checkStmt->execute();
-//                            $checkStmt->bind_result($count);
-//                            $checkStmt->fetch();
-//
-//                            if ($count > 0) {
-//                                $errorOccurred = true;
-//                            } else {
-//                                //$status = "actif";
-//                                //$stmt->bind_param('ssssssss', $data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $data[6], $status);
-//                                $stmt->bind_param('sssisss', $data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $data[6]);
-//                                $stmt->execute();
-//                            }
-//                        } else {
-//                            header("Location: ../ajoutCSVMachines.php?error=invalid_columns");
-//                            exit();
-//                        }
-//                    }
-//
-//                    if ($errorOccurred) {
-//                        header("Location: ../ajoutCSVMachines.php?error=serial_exists");
-//                        exit();
-//                    }
-//
-//                    header("Location: ../ajoutCSVMachines.php");
-//                    exit();
-//                }
-//            }
+            if ($_POST['type_csv'] == "ordinateurs") {
+                $insert = "INSERT INTO ordinateur (NAME, SERIAL, MANUFACTURER, MODEL, TYPE, CPU, RAM_MB, DISK_GB, OS, DOMAIN, LOCATION, BUILDING, ROOM, MACADDR, PURCHASE_DATE, WARRANTY_END) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                $checkSerialQuery = "SELECT COUNT(*) FROM ordinateur WHERE SERIAL = ?";
+
+                if (!$connect) {
+                    die("Connection failed: " . mysqli_connect_error());
+                }
+
+                if ($stmt = mysqli_prepare($connect, $insert)) {
+                    if ($checkStmt = mysqli_prepare($connect, $checkSerialQuery)) {
+                        $errorOccurred = false;
+
+                        while (($data = fgetcsv($handle, 1000, ',')) !== FALSE) {
+                            if (count($data) == 16) {
+                                mysqli_stmt_bind_param($checkStmt, 's', $data[0]);
+
+                                mysqli_stmt_execute($checkStmt);
+
+                                mysqli_stmt_bind_result($checkStmt, $count);
+                                mysqli_stmt_fetch($checkStmt);
+
+                                mysqli_stmt_free_result($checkStmt);
+
+                                if ($count > 0) {
+                                    $errorOccurred = true;
+                                } else {
+                                    mysqli_stmt_bind_param($stmt, 'ssssssiissssssss', $data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $data[6],$data[7],$data[8],$data[9],$data[10],$data[11],$data[12],$data[13],$data[14],$data[15]);
+                                    mysqli_stmt_execute($stmt);
+                                }
+                            } else {
+                                header("Location: ../ajoutCSVMachines.php?error=invalid_columns");
+                                exit();
+                            }
+                        }
+
+                        if ($errorOccurred) {
+                            header("Location: ../ajoutCSVMachines.php?error=serial_exists");
+                            exit();
+                        }
+
+                        header("Location: ../ajoutCSVMachines.php?sucess");
+                        exit();
+                    } else {
+                        die('Error preparing check serial query: ' . mysqli_error($connect));
+                    }
+                } else {
+                    die('Error preparing insert query: ' . mysqli_error($connect));
+                }
+            }
 
             fclose($handle);
         } else {
@@ -79,4 +124,3 @@ if (isset($_POST['submit']) && isset($_POST['type_csv'])) {
 }
 
 $connect->close();
-?>
