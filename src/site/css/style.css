@@ -648,6 +648,60 @@ td {
     text-decoration: underline;
 }
 
+/* ****************************************** Gestion Rebut ******************************************************** */
+
+.alert-warning {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+}
+
+.alert-warning strong {
+    font-weight: bold;
+}
+
+.status-inactive {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 20px;
+    margin: 20px 0;
+    border: 2px solid #f5c6cb;
+    border-radius: 5px;
+}
+
+.status-active {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 20px;
+    margin: 20px 0;
+    border: 2px solid #c3e6cb;
+    border-radius: 5px;
+}
+
+.status-inactive h3,
+.status-active h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.status-inactive p,
+.status-active p {
+    margin: 0;
+}
+
+.toggle-button-container {
+    margin-top: 20px;
+}
+
+.toggle-button-container button {
+    padding: 12px 24px;
+    font-size: 16px;
+}
+
 
 /* Style pour le paragraphe contenant le format CSV */
 .csv-format-info {

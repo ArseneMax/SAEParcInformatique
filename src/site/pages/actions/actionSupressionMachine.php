@@ -1,6 +1,15 @@
 <?php
 include("../../fonctions/database.php");
 
+$sql = "SELECT statut FROM config_rebut WHERE id = 1";
+$result = mysqli_query($connect, $sql);
+$row = mysqli_fetch_assoc($result);
+
+
+if ($row['statut'] == 'inactif') {
+    header("Location: ../supression.php?error=table_bloquee");
+    exit;
+}
 
 if (isset($_POST['ordinateur'])) {
 
