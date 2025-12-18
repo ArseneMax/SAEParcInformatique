@@ -25,7 +25,7 @@ if (isset($_SESSION['login'])) {
 
             echo '<form method="post" action="actions/actionAjoutMoniteur.php" id="ajoutMoniteur">
                         <div class="form-group">
-                            <label>' . $categorieMoniteur[0] . '</label>
+                            <label for ="' . $categorieMoniteur[0] . '">' . $categorieMoniteur[0] . '</label>
                             <input type="text" name="SERIAL">
                         </div>';
 
@@ -49,7 +49,7 @@ if (isset($_SESSION['login'])) {
                     }
                     echo '</select>';
                 }else{
-                    echo '<label>' . $categorieMoniteur[$i] . '</label>
+                    echo '<label for="' . $categorieMoniteur[$i] . '">' . $categorieMoniteur[$i] . '</label>
                         <input type="' . $type . '" name="' . $categorieMoniteur[$i] . '" required>';
                 }
 
