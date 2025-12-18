@@ -56,7 +56,7 @@ if (isset($_SESSION['login'])) {
     #bouton pour télécharger le csv des moniteurs en rebut
 
     echo '<div class="csv-download">';
-    echo '<a href="actionCsvDownload.php?type=moniteur" class="btn-csv">📥 Telecharge CSV Moniteurs</a>';
+    echo '<a href="actions/actionCsvDownload.php?type=moniteur" class="btn-csv">📥 Telecharge CSV Moniteurs</a>';
     echo '</div>';
 
 
@@ -164,7 +164,7 @@ if (isset($_SESSION['login'])) {
     #bouton pour télécharger le csv des ordinateurs en rebut
 
     echo '<div class="csv-download">';
-    echo '<a href="actionCsvDownload.php?type=ordinateur" class="btn-csv"> Telecharge CSV Ordinateurs </a>';
+    echo '<a href="actions/actionCsvDownload.php?type=ordinateur" class="btn-csv"> Telecharge CSV Ordinateurs </a>';
     echo '</div>';
 
 
