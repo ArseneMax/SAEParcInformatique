@@ -27,12 +27,11 @@ if (isset($_SESSION['login'])) {
     $result = mysqli_query($connect, $sql);
 
     echo '<div class="tech-content">';
-    echo '<h1 class="page-title">Gestion du Matériel</h1>';
-    echo '<h2>Ordinateur</h2>';
+    echo '<h1 class="page-title">Gestion du Matériel</h1>';;
 
     echo "<table>
     <caption>
-            table des ordinateurs
+        Table des Ordinateurs
       </caption>
         <thead>
             <tr>

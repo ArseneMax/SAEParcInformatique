@@ -160,6 +160,11 @@ header {
     border-top: 1px solid #000;
 }
 /* ****************************************** PAGE  ******************************************************** */
+caption{
+    color: var(--terracotta);
+    margin-bottom: 20px;
+}
+
 
 .tech-content {
   max-width: 1200px;

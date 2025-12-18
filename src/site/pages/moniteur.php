@@ -26,12 +26,12 @@ if (isset($_SESSION['login'])) {
     $sql = "SELECT * FROM moniteur WHERE statut = 'actif' LIMIT $lignes_par_page OFFSET $offset";
     $result = mysqli_query($connect, $sql);
 
-    echo '<div class="tech-content">';
-    echo '<h2>Moniteur</h2>';
-    echo '<table>
+    echo '<div class="tech-content">
+    <h1 class="page-title">Gestion du Matériel</h1>
+    <table>
         <caption>
-            table des moniteurs
-          </caption>
+        Table des Moniteurs
+        </caption>
             <thead>
             <tr>
                 <th>SERIAL</th>
