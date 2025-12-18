@@ -30,8 +30,11 @@ if (isset($_SESSION['login'])) {
     echo '<h1 class="page-title">Gestion du Matériel</h1>';
     echo '<h2>Ordinateur</h2>';
 
-    echo "<table>";
-    echo "<thead>
+    echo "<table>
+    <caption>
+            table des ordinateurs
+      </caption>
+        <thead>
             <tr>
                 <th>NAME</th>
                 <th>SERIAL</th>

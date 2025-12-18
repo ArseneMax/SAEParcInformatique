@@ -29,6 +29,9 @@ if (isset($_SESSION['login'])) {
     echo '<div class="tech-content">';
     echo '<h2>Moniteur</h2>';
     echo '<table>
+        <caption>
+            table des moniteurs
+          </caption>
             <thead>
             <tr>
                 <th>SERIAL</th>
