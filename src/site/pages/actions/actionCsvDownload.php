@@ -1,31 +1,22 @@
 <?php
 session_start();
-include("../fonctions/database.php");
+include("../../fonctions/database.php");
 
-if (!isset($_SESSION['login'])) {
-    die("Accès refusé");
-}
-
-$type = $_GET['type'] ?? '';
-
-if (!in_array($type, ['moniteur', 'ordinateur'])) {
-    die("Type invalide");
-}
-
-if ($type === 'moniteur') {
-    $filename = "moniteurs_inactifs.csv";
-    $sql = "SELECT SERIAL, MANUFACTURER, MODEL, SIZE_INCH, RESOLUTION, CONNECTOR, ATTACHED_TO
+if (isset($_POST['submit'])){
+    if ($_POST['objects'] == "moniteurs"){
+        $filename = "moniteurs_rebut.csv";
+        $sql = "SELECT SERIAL, MANUFACTURER, MODEL, SIZE_INCH, RESOLUTION, CONNECTOR, ATTACHED_TO
             FROM moniteur
             WHERE statut = 'inactif'";
-}
-
-if ($type === 'ordinateur') {
-    $filename = "ordinateurs_inactifs.csv";
-    $sql = "SELECT NAME, SERIAL, MANUFACTURER, MODEL, TYPE, CPU, RAM_MB, DISK_GB,
+    }
+    if ($_POST['objects'] == "ordinateurs"){
+        $filename = "ordinateurs_rebut.csv";
+        $sql = "SELECT NAME, SERIAL, MANUFACTURER, MODEL, TYPE, CPU, RAM_MB, DISK_GB,
                    OS, DOMAIN, LOCATION, BUILDING, ROOM, MACADDR,
                    PURCHASE_DATE, WARRANTY_END
             FROM ordinateur
             WHERE statut = 'inactif'";
+    }
 }
 
 $result = mysqli_query($connect, $sql);
@@ -44,10 +35,10 @@ $headers = [];
 foreach ($fields as $field) {
     $headers[] = $field->name;
 }
-fputcsv($output, $headers, ';');
+fputcsv($output, $headers, ',');
 
 while ($row = mysqli_fetch_assoc($result)) {
-    fputcsv($output, $row, ';');
+    fputcsv($output, $row, ',');
 }
 
 fclose($output);

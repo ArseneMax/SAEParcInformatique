@@ -25,7 +25,6 @@ if (isset($_SESSION['login'])) {
 
     $sql = "SELECT * FROM moniteur WHERE statut = 'inactif' LIMIT $lignes_par_page OFFSET $offset";
     $result = mysqli_query($connect, $sql);
-
     echo '<div class="tech-content">';
     echo '<h2>Moniteur</h2>';
     echo '<table>
@@ -53,11 +52,8 @@ if (isset($_SESSION['login'])) {
 
     echo "</tbody></table>";
 
-    #bouton pour télécharger le csv des moniteurs en rebut
 
-    echo '<div class="csv-download">';
-    echo '<a href="actions/actionCsvDownload.php?type=moniteur" class="btn-csv">📥 Telecharge CSV Moniteurs</a>';
-    echo '</div>';
+
 
 
     if ($total_pages > 1) {
@@ -163,10 +159,17 @@ if (isset($_SESSION['login'])) {
 
     #bouton pour télécharger le csv des ordinateurs en rebut
 
-    echo '<div class="csv-download">';
-    echo '<a href="actions/actionCsvDownload.php?type=ordinateur" class="btn-csv"> Telecharge CSV Ordinateurs </a>';
-    echo '</div>';
-
+    echo"
+    <div class='csv-upload-form'>
+        <form action='actions/actionCsvDownload.php' method='post' enctype='multipart/form-data'>
+            <label>Selectionner les objets à exporter en CSV:</label>
+            <select name='objects'>
+                <option value='moniteurs'>Moniteurs</option>
+                <option value='ordinateurs'>Ordinateurs</option>
+            </select>
+            <button type='submit' name='submit'>Exporter</button>
+        </form>
+        </div>";
 
     if ($total_pages > 1) {
         echo '<div class="pagination">';
