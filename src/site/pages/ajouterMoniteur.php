@@ -26,7 +26,7 @@ if (isset($_SESSION['login'])) {
             echo '<form method="post" action="actions/actionAjoutMoniteur.php" id="ajoutMoniteur">
                         <div class="form-group">
                             <label for ="' . $categorieMoniteur[0] . '">' . $categorieMoniteur[0] . '</label>
-                            <input type="text" name="SERIAL">
+                            <input type="text" id="' . $categorieMoniteur[0] . '"name="SERIAL">
                         </div>';
 
             for ($i = 1; $i < count($categorieMoniteur); $i++) {
@@ -50,7 +50,7 @@ if (isset($_SESSION['login'])) {
                     echo '</select>';
                 }else{
                     echo '<label for="' . $categorieMoniteur[$i] . '">' . $categorieMoniteur[$i] . '</label>
-                        <input type="' . $type . '" name="' . $categorieMoniteur[$i] . '" required>';
+                        <input type="' . $type . '" id="' . $categorieMoniteur[$i] . '" name="' . $categorieMoniteur[$i] . '" required>';
                 }
 
                 echo  '</div>';
