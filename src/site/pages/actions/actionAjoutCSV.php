@@ -5,6 +5,17 @@ if (isset($_POST['submit']) && isset($_POST['type_csv'])) {
     if (isset($_FILES['csv_file']) && $_FILES['csv_file']['error'] == 0) {
         $file = $_FILES['csv_file']['tmp_name'];
 
+        $insertLog = "INSERT INTO journal (login,ip,role,action,date) VALUES (?,?,?,?,?)";
+        $stmt2 = mysqli_prepare($connect,$insertLog);
+
+        session_start();
+        $login=$_SESSION['login'];
+        $role=$_SESSION['role'];
+        $date = date("Y-m-d");
+        $ip =  $_SERVER['REMOTE_ADDR'];
+
+
+
         if (($handle = fopen($file, 'r')) !== FALSE) {
             fgetcsv($handle);
 
@@ -15,6 +26,7 @@ if (isset($_POST['submit']) && isset($_POST['type_csv'])) {
                 if (!$connect) {
                     die("Connection failed: " . mysqli_connect_error());
                 }
+                $action = "Import de moniteurs via CSV";
 
                 if ($stmt = mysqli_prepare($connect, $insert)) {
                     if ($checkStmt = mysqli_prepare($connect, $checkSerialQuery)) {
@@ -47,6 +59,9 @@ if (isset($_POST['submit']) && isset($_POST['type_csv'])) {
                             header("Location: ../ajoutCSVMachines.php?error=serial_exists");
                             exit();
                         }
+                        mysqli_stmt_bind_param($stmt2,"sssss",$login,$ip,$role,$action,$date);
+                        mysqli_stmt_execute($stmt2);
+                        mysqli_stmt_close($stmt2);
 
                         header("Location: ../ajoutCSVMachines.php?sucess");
                         exit();
@@ -66,6 +81,8 @@ if (isset($_POST['submit']) && isset($_POST['type_csv'])) {
                 if (!$connect) {
                     die("Connection failed: " . mysqli_connect_error());
                 }
+
+                $action = "Import d'ordinateurs via CSV";
 
                 if ($stmt = mysqli_prepare($connect, $insert)) {
                     if ($checkStmt = mysqli_prepare($connect, $checkSerialQuery)) {
@@ -99,6 +116,9 @@ if (isset($_POST['submit']) && isset($_POST['type_csv'])) {
                             exit();
                         }
 
+                        mysqli_stmt_bind_param($stmt2,"sssss",$login,$ip,$role,$action,$date);
+                        mysqli_stmt_execute($stmt2);
+                        mysqli_stmt_close($stmt2);
                         header("Location: ../ajoutCSVMachines.php?sucess");
                         exit();
                     } else {

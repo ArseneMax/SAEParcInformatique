@@ -3,11 +3,24 @@ session_start();
 include("../../fonctions/database.php");
 
 if (isset($_POST['submit'])){
+
+    $insertLog = "INSERT INTO journal (login,ip,role,action,date) VALUES (?,?,?,?,?)";
+    $stmt2 = mysqli_prepare($connect,$insertLog);
+
+    session_start();
+    $login=$_SESSION['login'];
+    $role=$_SESSION['role'];
+    $date = date("Y-m-d");
+    $ip =  $_SERVER['REMOTE_ADDR'];
+
     if ($_POST['objects'] == "moniteurs"){
         $filename = "moniteurs_rebut.csv";
         $sql = "SELECT SERIAL, MANUFACTURER, MODEL, SIZE_INCH, RESOLUTION, CONNECTOR, ATTACHED_TO
             FROM moniteur
             WHERE statut = 'inactif'";
+
+        $action = "Export CSV des moniteurs";
+
     }
     if ($_POST['objects'] == "ordinateurs"){
         $filename = "ordinateurs_rebut.csv";
@@ -16,10 +29,15 @@ if (isset($_POST['submit'])){
                    PURCHASE_DATE, WARRANTY_END
             FROM ordinateur
             WHERE statut = 'inactif'";
+
+        $action = "Export CSV des ordinateurs";
     }
 }
 
 $result = mysqli_query($connect, $sql);
+mysqli_stmt_bind_param($stmt2,"sssss",$login,$ip,$role,$action,$date);
+mysqli_stmt_execute($stmt2);
+mysqli_stmt_close($stmt2);
 
 if (!$result) {
     die("Erreur SQL : " . mysqli_error($connect));

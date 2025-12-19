@@ -13,6 +13,9 @@
                             echo "<li><a href='adminweb.php' class='bouton-nav'>Admin</a></li>";
                         }
                     }
+                    else{
+                        echo "<li><a href='journalActivité.php' class='bouton-nav'>Journal d'activité</a></li>";
+                    }
                 }
                 ?>
 
