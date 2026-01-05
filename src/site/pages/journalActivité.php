@@ -22,7 +22,7 @@ if (isset($_SESSION['login'])) {
     $total_pages = ceil($total_lignes / $lignes_par_page);
 
 
-    $sql = "SELECT * FROM journal ORDER BY date DESC";
+    $sql = "SELECT Login,ip,role,action,date FROM journal ORDER BY id DESC";
     $result = mysqli_query($connect, $sql);
     echo '<div class="tech-content">';
     echo '<h2>Journal d&apos;activité</h2>';
