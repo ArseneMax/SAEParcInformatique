@@ -22,7 +22,7 @@ if (isset($_SESSION['login'])) {
     $total_pages = ceil($total_lignes / $lignes_par_page);
 
 
-    $sql = "SELECT Login,ip,role,action,date FROM journal ORDER BY id DESC";
+    $sql = "SELECT Login,ip,role,action,date,heure FROM journal ORDER BY id DESC";
     $result = mysqli_query($connect, $sql);
     echo '<div class="tech-content">';
     echo '<h2>Journal d&apos;activité</h2>';
@@ -30,18 +30,23 @@ if (isset($_SESSION['login'])) {
             <thead>
             <tr>
                 <th>Login</th>
-                <th>adresse IP</th>   
-                <th>role</th>
-                <th>action</th>
-                <th>Date de connexion</th>
+                <th>Adresse IP</th>   
+                <th>Role</th>
+                <th>Action</th>
+                <th>Date</th>
             </tr>
             </thead>
             <tbody>';
 
     while ($ligne = mysqli_fetch_row($result)) {
         $dateSQL = $ligne[4];
-        $dateFR = date("d-m-Y H:i", strtotime($dateSQL . ' ' . date("H:i")));
-        $ligne[4] = $dateFR;
+        $dateFR = date("d-m-Y", strtotime($dateSQL));
+
+        $heureSQL = $ligne[5];
+        $heureFR = date("H:i", strtotime($heureSQL));
+
+        $ligne[4] = $dateFR . ' ' . $heureFR;
+
 
         echo "<tr>";
         foreach ($ligne as $valeur) {
