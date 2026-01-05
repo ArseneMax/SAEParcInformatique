@@ -17,6 +17,9 @@ if (isset($_POST['login'], $_POST['password'], $_POST['creation'])) {
             mysqli_stmt_bind_param($requete, "sss", $login, $password,$role);
             mysqli_stmt_execute($requete);
             mysqli_stmt_close($requete);
+            $action = "Ajout d'un technicien";
+            insertionLog($action);
+
             header('location:../adminweb.php?success');
         }
         else{

@@ -14,7 +14,7 @@ if ($row['statut'] == 'inactif') {
 if (isset($_POST['ordinateur'])) {
 
     $ordinateur = mysqli_real_escape_string($connect, $_POST['ordinateur']);
-
+    $action = "Suppression d'un Ordinateur";
 
     $sql = "UPDATE ordinateur SET statut = 'inactif' WHERE NAME = ?";
 
@@ -38,6 +38,7 @@ if (isset($_POST['ordinateur'])) {
 if (isset($_POST['moniteur'])) {
 
     $moniteur = mysqli_real_escape_string($connect, $_POST['moniteur']);
+    $action = "Suppression d'un Moniteur";
 
 
     $sql = "UPDATE moniteur SET statut = 'inactif' WHERE SERIAL = ?";
@@ -54,7 +55,7 @@ if (isset($_POST['moniteur'])) {
 
         header("Location: ../inventory.php?error");
     }
-
+    insertionLog($action);
 
     mysqli_stmt_close($stmt);
 }

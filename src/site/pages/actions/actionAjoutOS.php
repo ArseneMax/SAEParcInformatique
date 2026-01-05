@@ -40,6 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['OSname'])) {
     }
 
     mysqli_close($connect);
+    $action = "Ajout d'un OS";
+    insertionLog($action);
+
     echo "success";
     header("location:../gestionInfos.php?success");
     exit();

@@ -14,6 +14,9 @@ $sql .= " WHERE SERIAL ='" . $_POST['SERIAL'] . "'";
 
 
 $requete_log = mysqli_query($connect, $sql);
+$action = "Modification d'un Moniteur";
+insertionLog($action);
+
 
 header("location:../inventory.php");
 

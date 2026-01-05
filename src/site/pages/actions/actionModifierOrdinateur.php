@@ -14,5 +14,7 @@ $sql .= " WHERE NAME ='" . $_POST['NAME'] . "'";
 
 
 $requete_log = mysqli_query($connect, $sql);
+$action = "Modification d'un Ordinateur";
+insertionLog($action);
 
 header("location:../inventory.php");

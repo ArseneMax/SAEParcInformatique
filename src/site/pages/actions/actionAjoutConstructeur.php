@@ -38,6 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['Cname'])) {
     if (!mysqli_query($connect, $insert_query)) {
         die("Erreur SQL INSERT : " . mysqli_error($connect));
     }
+    $action = "Ajout d'un Constructeur";
+    insertionLog($action);
 
     mysqli_close($connect);
     echo "success";
