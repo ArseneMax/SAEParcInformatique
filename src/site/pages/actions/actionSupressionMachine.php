@@ -1,5 +1,6 @@
 <?php
 include("../../fonctions/database.php");
+include("../../fonctions/fonctionsLog.php");
 
 $sql = "SELECT statut FROM config_rebut WHERE id = 1";
 $result = mysqli_query($connect, $sql);

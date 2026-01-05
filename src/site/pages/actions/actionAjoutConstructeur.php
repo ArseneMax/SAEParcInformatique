@@ -10,6 +10,7 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] != 'adminweb') {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['Cname'])) {
 
     include("../../fonctions/database.php");
+    include("../../fonctions/fonctionsLog.php");
 
 
     $Cname = mysqli_real_escape_string($connect, trim($_POST['Cname']));

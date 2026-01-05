@@ -2,6 +2,7 @@
 $nom_BD = "PARKIT";
 
 include("../../fonctions/database.php");
+include("../../fonctions/fonctionsLog.php");
 
 if (isset($_POST['login'], $_POST['password'], $_POST['creation'])) {
     $login = $_POST['login'];

@@ -1,5 +1,6 @@
 <?php
 include("../../fonctions/database.php");
+include("../../fonctions/fonctionsLog.php");
 $categorie = array('NAME', 'SERIAL', 'MANUFACTURER', 'MODEL', 'TYPE', 'CPU', 'RAM_MB', 'DISK_GB', 'OS', 'DOMAIN', 'LOCATION', 'BUILDING', 'ROOM', 'MACADDR', 'PURCHASE_DATE', 'WARRANTY_END');
 
 $sql = "UPDATE ordinateur SET ";

@@ -1,5 +1,6 @@
 <?php
 include("../../fonctions/database.php");
+include("../../fonctions/fonctionsLog.php");
 $categorie = array('SERIAL', 'MANUFACTURER', 'MODEL', 'SIZE_INCH', 'RESOLUTION', 'CONNECTOR','ATTACHED_TO');
 
 $sql = "UPDATE moniteur SET ";

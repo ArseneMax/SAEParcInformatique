@@ -1,5 +1,6 @@
 <?php
 require_once("../../fonctions/database.php");
+include("../../fonctions/fonctionsLog.php");
 
 if (isset($_POST['submit']) && isset($_POST['type_csv'])) {
     if (isset($_FILES['csv_file']) && $_FILES['csv_file']['error'] == 0) {

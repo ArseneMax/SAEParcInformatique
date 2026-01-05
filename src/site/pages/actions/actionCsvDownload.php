@@ -1,6 +1,7 @@
 <?php
 session_start();
 include("../../fonctions/database.php");
+include("../../fonctions/fonctionsLog.php");
 
 if (isset($_POST['submit'])){
 

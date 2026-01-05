@@ -1,5 +1,6 @@
 <?php
 include("../../fonctions/database.php");
+include("../../fonctions/fonctionsLog.php");
 
 if (isset($_POST['SERIAL'], $_POST['MANUFACTURER'], $_POST['MODEL'], $_POST['SIZE_INCH'], $_POST['RESOLUTION'], $_POST['CONNECTOR'], $_POST['ATTACHED_TO'],$_POST['ajouter'])) {
     $sql = "INSERT INTO moniteur (SERIAL, MANUFACTURER, MODEL, SIZE_INCH, RESOLUTION, CONNECTOR, ATTACHED_TO) 
