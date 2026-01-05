@@ -40,7 +40,7 @@ if (isset($_SESSION['login'])) {
 
     while ($ligne = mysqli_fetch_row($result)) {
         $dateSQL = $ligne[4];
-        $dateFR = date("d-m-Y", strtotime($dateSQL));
+        $dateFR = date("d-m-Y H:i", strtotime($dateSQL . ' ' . date("H:i")));
         $ligne[4] = $dateFR;
 
         echo "<tr>";
