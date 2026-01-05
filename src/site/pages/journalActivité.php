@@ -33,7 +33,7 @@ if (isset($_SESSION['login'])) {
                 <th>Adresse IP</th>   
                 <th>Role</th>
                 <th>Action</th>
-                <th>Date</th>
+                <th>Date et Heure</th>
             </tr>
             </thead>
             <tbody>';
@@ -49,8 +49,10 @@ if (isset($_SESSION['login'])) {
 
 
         echo "<tr>";
-        foreach ($ligne as $valeur) {
-            echo "<td>" . htmlspecialchars($valeur) . "</td>";
+        foreach ($ligne as $key => $valeur) {
+            if ($key != 5) {
+                echo "<td>" . htmlspecialchars($valeur) . "</td>";
+            }
         }
         echo "</tr>";
     }
