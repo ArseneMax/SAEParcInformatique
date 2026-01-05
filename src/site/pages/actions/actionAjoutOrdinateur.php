@@ -5,7 +5,7 @@ if (isset($_POST['NAME'], $_POST['SERIAL'], $_POST['MANUFACTURER'], $_POST['MODE
 
     $sql = "INSERT INTO ordinateur (NAME, SERIAL, MANUFACTURER, MODEL, TYPE, CPU, RAM_MB, DISK_GB, OS, DOMAIN, LOCATION, BUILDING, ROOM, MACADDR, PURCHASE_DATE, WARRANTY_END) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $insertLog = "INSERT INTO journal (login,ip,role,action,date) VALUES (?,?,?,?,?)";
+    $insertLog = "INSERT INTO journal (login,ip,role,action,date,heure) VALUES (?,?,?,?,?,?)";
     $ram = (int)$_POST['RAM_MB'];
     $dis = (int)$_POST['DISK_GB'];
 
@@ -26,7 +26,8 @@ if (isset($_POST['NAME'], $_POST['SERIAL'], $_POST['MANUFACTURER'], $_POST['MODE
     $date = date("Y-m-d");
     $ip =  $_SERVER['REMOTE_ADDR'];
     $action = "Ajout d'un ordinateur";
-    mysqli_stmt_bind_param($stmt2,"sssss",$login,$ip,$role,$action,$date);
+    $heure = date("H:i:s");
+    mysqli_stmt_bind_param($stmt2,"sssss",$login,$ip,$role,$action,$date,$heure);
     mysqli_stmt_execute($stmt2);
     mysqli_stmt_close($stmt2);
     header("Location: ../inventory.php");
