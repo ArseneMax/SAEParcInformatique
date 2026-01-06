@@ -2,6 +2,7 @@
 include("database.php");
 
 function insertionLog($action){
+    global $connect;
     $insertLog = "INSERT INTO journal (login,ip,role,action,date,heure) VALUES (?,?,?,?,?,?)";
     $stmt2 = mysqli_prepare($connect,$insertLog);
     session_start();
