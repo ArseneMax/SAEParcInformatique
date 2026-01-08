@@ -6,7 +6,7 @@ function insertionLog($action){
     $insertLog = "INSERT INTO journal (login,ip,role,action,date,heure) VALUES (?,?,?,?,?,?)";
     $stmt2 = mysqli_prepare($connect,$insertLog);
     session_start();
-    $login = $_POST['login'];
+    $login = $_SESSION['login'];
     $role = $_SESSION['role'];
     $date = date("Y-m-d");
     $ip =  $_SERVER['REMOTE_ADDR'];
