@@ -59,6 +59,17 @@ if (isset($_SESSION['login'])) {
 
     echo "</tbody></table>";
 
+    $lignes_par_page = 10;
+    $page_actuelle = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $offset = ($page_actuelle - 1) * $lignes_par_page;
+
+
+    $sql_count = "SELECT COUNT(*) as total FROM journal";
+    $result_count = mysqli_query($connect, $sql_count);
+    $row_count = mysqli_fetch_assoc($result_count);
+    $total_lignes = $row_count['total'];
+    $total_pages = ceil($total_lignes / $lignes_par_page);
+
 
     if ($total_pages > 1) {
         echo '<div class="pagination">';
