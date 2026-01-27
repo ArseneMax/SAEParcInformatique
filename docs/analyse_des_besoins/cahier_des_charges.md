@@ -5,19 +5,15 @@
 
 ### **1.Contexte**
 
-Le projet s'inscrit dans le cadre de la seconde année de BUT informatique à l'IUT de Vélizy, durant les semestres 3 et 4 de l'année 2025-2026. Il s'agit d'un projet transversal qui mobilise de nombreuses ressources du semestre, couvrant des domaines variés tels que le développement web (R301), le développement efficace (R302), l'analyse (R303), la qualité de développement (R304), la programmation système et l'architecture réseau (R305/R306), ainsi que d'autres aspects comme le SQL (R307), les probabilités (R308), la cryptographie (R309), le management des SI (R310/R311) et la communication professionnelle (R313).
-
-La plateforme que nous devons développer sera hébergée sur un serveur Raspberry Pi 4 (RPI4) fourni par l'IUT. Ce choix technique nous projette dans un monde professionnel car nous devrons nous-mêmes procéder à l'installation et à la configuration complète de l'environnement, incluant le système d'exploitation, le serveur web et l'ensemble des applications nécessaire pour notre plateforme.
+Le projet consiste à développer une application web de gestion de parc informatique hébergée sur un serveur Raspberry Pi 4\. Cette application permettra de gérer un inventaire complet de machines (moniteurs et unités centrales) avec un système d'authentification multi-niveaux et un suivi détaillé de toutes les opérations. L'infrastructure technique repose sur une stack LAMP (Linux, Apache/Nginx, MySQL, PHP) complétée par Python pour les traitements avancés. L'équipe devra gérer l'intégralité du cycle de développement, de l'installation système jusqu'au déploiement en production, incluant la configuration du serveur, la sécurisation des accès SSH et la mise en place de l'environnement applicatif.
 
 ### **2.Objectifs**
 
-Ce document a pour vocation première de définir avec précision le projet et l'ensemble de ses fonctionnalités. Il servira de référence tout au long du développement, permettant d'assurer une communication claire entre les différents intervenants, qu'il s'agisse des professeurs ou des futurs utilisateurs. Dans un contexte de travail en équipe de cinq étudiants, selon nous, il est essentiel d'avoir une base documentaire solide qui guidera nos efforts de développement et servira de support pour l'évaluation finale du projet.
-
-Nous développerons de notre mieux pour avoir une plateforme web performante et sécurisée, qui offrira une plateforme de gestion de parc informatique accessible via une interface web. Une attention particulière sera portée à la documentation du projet, qui devra respecter les bonnes pratiques de programmation et de gestion de projet.
+Ce cahier des charges définit les spécifications techniques et fonctionnelles de la plateforme. Il établit l'architecture logicielle à mettre en œuvre, les flux de données entre les composants, et les normes de sécurité à respecter. Le document servira de référence pour le développement backend en PHP et Python, l'implémentation de la base de données MySQL, et la création de l'interface front end responsive. L'objectif est de livrer une application web performante, sécurisée et maintenable, respectant les standards de l'industrie en termes de qualité de code et d'architecture logicielle.
 
 ### **3.Structure**
 
-Ce cahier des charges est structuré de manière logique pour couvrir tous les aspects du projet. Il commence par une introduction, qui présente le contexte et les objectifs, suivie d’une description technique détaillée, incluant un énoncé clair des objectifs du projet et des spécifications du serveur. La section des pré-requis du projet énumère les technologies (PHP, SQL, etc.) et les ressources (comme le Raspberry Pi 4\) nécessaires. Nous y décrivons également les priorités de développement établies pour répondre efficacement aux attentes du client. Enfin, les fonctionnalités de la plateforme sont exposées en détail, avec une lecture approfondie du cahier des charges et une expression des exigences fonctionnelles et techniques.
+Ce document se compose de quatre sections principales. L'introduction présente le contexte du projet et les objectifs de développement. L'énoncé détaille les fonctionnalités de la plateforme en décrivant les acteurs, les objets du système et les actions possibles pour chaque niveau d'accès. La section pré-requis liste les technologies et ressources nécessaires au développement et au déploiement de l'application. Enfin, les priorités définissent l'ordre de développement des différents modules pour assurer une livraison progressive et cohérente du projet.
 
 ### **4.Documents**
 
@@ -25,29 +21,34 @@ Documents référencés : 0 pour l'instant
 
 **II./ Enoncé** 
 
-Le projet a pour ambition la gestion d’un parc informatique robuste capable d'accueillir plusieurs utilisateurs, répondant ainsi aux besoins spécifiques du client. Cette plateforme doit non seulement gérer efficacement les informations liées aux utilisateurs mais aussi assurer une gestion fiable et performante du parc informatique à travers son inventaire.
+### **1\. Présentation générale**
 
-L'interface utilisateur constitue un aspect crucial du projet. Le site web doit être intuitif et facilement accessible, permettant une prise en main rapide par les différents utilisateurs. Pour faciliter cette appropriation, la plateforme doit être accompagnée d'un texte explicatif détaillé ainsi que d'une vidéo de présentation mettant en valeur ses fonctionnalités.
+La plateforme est une application web de gestion de parc informatique permettant de gérer un inventaire de machines et les utilisateurs qui y accèdent. L'authentification repose sur des sessions sécurisées avec hachage des mots de passe. Un système de logs trace toutes les actions importantes effectuées sur la plateforme.
 
-Au cœur de l'application se trouve un inventaire du parc informatique qui sera défini ultérieurement selon les besoins du client. Ce parc informatique devra être performant et produire une gestion fiable. L'application intègre un système complet de gestion des utilisateurs, permettant la création de comptes et l'authentification des utilisateurs. Une fois connecté, chaque utilisateur pourra accéder à cet inventaire.
+### **2\. Acteurs et niveaux d'accès**
 
-La gestion des droits d'accès est structurée selon une hiérarchie claire comprenant quatre niveaux d'utilisateurs. Les visiteurs, au niveau le plus basique, peuvent uniquement accéder à la page d'accueil sans pouvoir utiliser les modules de calcul. Les utilisateurs inscrits disposent d'un accès complet aux modules et à leurs fonctionnalités. L'administrateur web possède des droits étendus lui permettant de gérer les comptes utilisateurs, notamment la consultation de la liste des inscrits, la suppression de comptes et la création de nouveaux comptes via des fichiers CSV. Au sommet de cette hiérarchie, l'administrateur système bénéficie d'un accès privilégié aux logs du système directement depuis l'interface web.
+Le système distingue cinq types d'acteurs avec des droits progressifs. Le visiteur peut uniquement consulter la page d'accueil. Le client, une fois authentifié, accède en lecture à l'inventaire du parc informatique. Le technicien dispose des mêmes droits que le client et peut en plus modifier l'inventaire, ajouter ou supprimer des machines, importer des données via CSV et gérer la liste de rebut. L'administrateur web possède tous les droits du technicien auxquels s'ajoutent la gestion complète des comptes utilisateurs, la création d'informations système et la consultation des logs. L'administrateur système bénéficie de l'accès le plus élevé avec des capacités de monitoring avancé du serveur.
 
-L'infrastructure technique repose sur un Raspberry Pi qui hébergera l'ensemble de la solution. Cette configuration nécessite l'installation et la configuration d'un serveur web, d'un système de gestion de base de données MySQL, ainsi que la mise en place de mesures de sécurité appropriées, notamment pour les accès SSH. L'ensemble doit former une solution cohérente et sécurisée, capable de répondre aux exigences de performance et de fiabilité attendues par le client.
+### **3\. Objets du système**
 
-*Pour le moment, nous ne disposons pas de consignes précises pour la mise en place des modules.*
+La plateforme manipule plusieurs entités principales. Les comptes utilisateurs stockent les identifiants, mots de passe hachés et rôles. Le parc informatique contient l'inventaire des machines avec leurs caractéristiques (type, constructeur, système d'exploitation, statut). La liste de rebut conserve les machines retirées du service. Les fichiers CSV permettent l'import et l'export de données en masse. Le système de logs enregistre toutes les actions critiques avec horodatage et identification de l'acteur. Les informations système référencent les constructeurs et systèmes d'exploitation disponibles.
+
+### **4\. Fonctionnalités principales**
+
+Le visiteur accède uniquement à la page d'accueil de la plateforme. Le client peut se connecter avec ses identifiants et consulter l'inventaire complet du parc informatique. Le technicien peut ajouter une machine via un formulaire, importer plusieurs machines simultanément avec un fichier CSV, modifier les informations d'une machine existante, transférer une machine vers la liste de rebut ou la remettre en service, et exporter des données au format CSV. L'administrateur web visualise la liste des utilisateurs inscrits, crée ou supprime des comptes techniciens, supprime des comptes clients, ajoute des constructeurs ou systèmes d'exploitation dans le système, et consulte les logs d'activité. L'administrateur système accède aux logs système détaillés via l'interface web et dispose d'outils de monitoring du serveur.
 
 **III./ Pré-requis**
 
-La réalisation de notre application web nécessite l'utilisation de plusieurs technologies et diverses ressources tant logicielles que matérielles. Notre développement s'appuiera sur un ensemble complet de langages de programmation pour répondre aux différents aspects du projet.
+La réalisation de l'application nécessite plusieurs technologies et ressources tant logicielles que matérielles. Le développement s'appuiera sur un ensemble complet de langages de programmation et d'outils pour couvrir tous les aspects du projet.
 
-Le développement backend sera principalement assuré par PHP et Python, deux langages puissants et complémentaires. PHP servira de base pour la création des fonctionnalités web dynamiques, tandis que Python pourra être utilisé pour des traitements plus complexes et l'analyse de données. La gestion des données sera assurée par SQL, permettant une interaction avec notre base de données.
+Le développement backend sera assuré par PHP et Python, deux langages complémentaires qui répondront aux différents besoins de l'application. PHP servira de base pour créer les fonctionnalités web dynamiques, gérer les sessions utilisateurs, implémenter l'authentification avec hachage sécurisé des mots de passe, et assurer le routage des requêtes HTTP vers les contrôleurs appropriés. 
 
-Pour la partie frontend, nous utiliserons HTML et CSS pour créer une interface utilisateur responsive. Ces technologies seront enrichies par l'utilisation du langage R, particulièrement adapté pour les calculs statistiques et la visualisation de données.
+Python sera utilisé pour développer les scripts de traitement des fichiers CSV lors des imports en masse, permettant de parser et valider les données avant leur insertion dans la base. La gestion des données sera assurée par SQL pour interagir avec la base de données MySQL, en utilisant systématiquement des requêtes préparées pour prévenir les injections SQL et garantir la sécurité.
 
-Sur le plan des ressources logicielles, notre équipe s'appuiera sur les environnement de développement (IDE) professionnels comme JetBrains, reconnus pour leur robustesse et leurs fonctionnalités avancées de développement. Le système d'exploitation Raspberry Pi OS sera déployé sur notre serveur, offrant un environnement stable et optimisé pour notre infrastructure.
-
-Concernant les ressources matérielles, nous disposerons des ordinateurs de l'IUT pour le développement, complétés par un Raspberry Pi qui servira de serveur de production. Une carte SD sera utilisée pour le stockage du système et des données, formant ainsi une infrastructure complète et autonome pour notre application. 
+Pour la partie frontend, HTML5 fournira la structure des pages web, tandis que CSS assurera la mise en forme avec un design responsive qui s'adaptera automatiquement aux différentes tailles d'écran. JavaScript gérera les interactions dynamiques côté client pour améliorer l'expérience utilisateur avec des validations en temps réel et des mises à jour partielles de la page. Le langage R sera intégré pour générer des visualisations statistiques et des rapports graphiques sur l'état du parc informatique.  
+L'infrastructure technique reposera sur un Raspberry Pi 4 qui servira de serveur de production. Le système d'exploitation Raspberry Pi OS sera installé sur une carte SD de capacité suffisante pour stocker le système et les données de l'application.  
+   
+Un serveur web Apache ou Nginx sera configuré pour servir l'application PHP avec les modules nécessaires activés. MySQL gérera la base de données relationnelle avec des tables normalisées et des index optimisés pour les performances. L'accès au serveur sera sécurisé par SSH avec authentification par clé publique, désactivant l'authentification par mot de passe pour renforcer la sécurité.
 
 **IV./ Priorités**
 
@@ -80,29 +81,3 @@ Les priorités éventuelles du développement à confirmer avec le client :
 7. **Tests et Validation**
 
     Enfin, une phase complète de tests et de validation sera menée avant la mise en production. Cette étape permettra de vérifier le bon fonctionnement de chaque module, la performance globale de l'application et la robustesse des mesures de sécurité mises en place. Cette validation finale est indispensable pour s'assurer que notre solution répond pleinement aux attentes du client.
-
-**LECTURE DU CAHIER DES CHARGES SAE**
-
-| Acteurs | Objets | Actions |
-| ----- | ----- | ----- |
-| administrateur système | page d'accueil | Accéder à la page d’accueil |
-| administrateur web | carte SD | Se connecter |
-| technicien | mot de passe | Voir la liste des utilisateurs inscrits |
-| visiteur | formulaire d’inscription | Supprimer des comptes utilisateurs  |
-| client | serveur web | Stocker les suppressions dans un fichier de log |
-|  | le système | Gérer les mots de passe |
-|  | la base de données | Consulter le fichier des logs |
-|  | fichier csv | Inspecter les utilisateurs inscrits |
-|  | compte utilisateur | consulter le parc informatique |
-|  | parc informatique | consulter l’inventaire |
-|  | l’inventaire | modifier une information du parc informatique |
-|  | machine (moniteurs/unité centrale) | mettre une machine dans la parc informatique à partir d’un formulaire |
-|  | liste rebut | mettre une série de machines dans l’inventaire avec un fichier csv |
-|  | journal d’activité | supprimer une machine de l'inventaire et le mettre dans la liste rebut |
-|  | plateforme | exporter une liste en format csv |
-|  | fichier log | consulter la liste de rebut |
-|  |  | changer le statut du matériel si il est remis en service |
-|  |  | créer un technicien  |
-|  |  | supprimer un technicien |
-|  |  | créer une information pour le technicien (nom de systèmes d’exploitation, constructeur de la machine) |
-|  |  | bloquer la liste de rebut |
