@@ -51,6 +51,12 @@ if (isset($_SESSION['login'])) {
         foreach ($ligne as $valeur) {
             echo "<td>" . htmlspecialchars($valeur) . "</td>";
         }
+        echo "<td>
+                <form method='post' action='modification.php'>
+                    <input type='hidden' name='SerialMoniteur' value='". htmlspecialchars($ligne[0]);
+        echo "'>    
+                    <button type='submit' class='bouton_ajout'>Modifier</button>
+                </form></td>";
         echo "</tr>";
     }
 

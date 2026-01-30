@@ -51,6 +51,7 @@ if (isset($_SESSION['login'])) {
                 <th>MACADDR</th>
                 <th>PURCHASE_DATE</th>
                 <th>WARRANTY_END</th>
+                <th>MODIFICATION</th>
             </tr>
             </thead>
             <tbody>";
@@ -61,6 +62,12 @@ if (isset($_SESSION['login'])) {
         foreach ($ligne as $valeur) {
             echo "<td>" . htmlspecialchars($valeur) . "</td>";
         }
+        echo "<td>
+                <form method='post' action='modification.php'>
+                    <input type='hidden' name='NameMachine' value='". htmlspecialchars($ligne[0]);
+        echo "'>    
+                    <button type='submit' class='bouton_ajout'>Modifier</button>
+                </form></td>";
         echo "</tr>";
     }
 
