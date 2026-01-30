@@ -41,6 +41,7 @@ if (isset($_SESSION['login'])) {
                 <th>RESOLUTION</th>
                 <th>CONNECTOR</th>
                 <th>ATTACHED_TO</th>
+                <th>MODIFICATION</th>
             </tr>
             </thead>
             <tbody>';
