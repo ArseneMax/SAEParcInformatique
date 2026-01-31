@@ -30,27 +30,39 @@ if (isset($_SESSION['login'])|| $_SESSION['login'] == 'adminweb') {
     }
 
     echo '<div class="main-content">';
-    echo '<h2>Administration de la table de rebut</h2>';
+    echo '<h2>Gestion des suppressions - Table de rebut</h2>';
+
+    echo '<div class="info-box">';
+    echo '<p><strong>Cette page permet de contrôler les suppressions dans la table de rebut.</strong></p>';
+    echo '<ul>';
+    echo '<strong>INACTIF (BLOQUÉ)</strong> : Aucun élément ne peut être ajouté/supprimé de la table de rebut';
+    echo '<br>';
+    echo '<strong>ACTIF (DÉBLOQUÉ)</strong> : Les suppressions/ajouts sont autorisées dans la table de rebut';
+    echo '</ul>';
+    echo '</div>';
 
     if ($est_bloque) {
         echo '<div class="status-inactive">';
-        echo '<h3> État actuel : INACTIF (BLOQUÉE)</h3>';
-        echo '<p>Aucune suppression n\'est possible dans la table de rebut.</p>';
+        echo '<h3> État actuel : INACTIF (BLOQUÉ)</h3>';
+        echo '<p><strong>Les modifications sont actuellement INTERDITES.</strong></p>';
+        echo '<p>Aucun utilisateur ne peut modifier des éléments de la table de rebut.</p>';
         echo '</div>';
     } else {
         echo '<div class="status-active">';
-        echo '<h3> État actuel : ACTIF (DÉBLOQUÉE)</h3>';
-        echo '<p>Les suppressions sont autorisées dans la table de rebut.</p>';
+        echo '<h3> État actuel : ACTIF (DÉBLOQUÉ)</h3>';
+        echo '<p><strong>Les modifications sont actuellement AUTORISÉES.</strong></p>';
+        echo '<p>Les utilisateurs peuvent mofifier des éléments de la table de rebut.</p>';
         echo '</div>';
     }
 
     echo '<div class="toggle-button-container">';
     echo '<form method="post">';
     echo '<button type="submit" name="toggle_blocage" class="bouton_ajout">';
-    echo $est_bloque ? ' Passer en ACTIF (débloquer)' : ' Passer en INACTIF (bloquer)';
+    echo $est_bloque ? ' DÉBLOQUER - Autoriser les modifications' : ' BLOQUER - Interdire les modifications';
     echo '</button>';
     echo '</form>';
     echo '</div>';
+
 
     echo '</div>';
 }
