@@ -22,12 +22,55 @@ if (isset($_SESSION['login'])) {
     $total_lignes = $row_count['total'];
     $total_pages = ceil($total_lignes / $lignes_par_page);
 
+    if (isset($_POST['MANUFACTURER'],$_POST['OS'])) {
+        if ($_POST['MANUFACTURER'] == "") {
+            $MANUFACTURER="";
+        }else{
+            $MANUFACTURER = "AND MANUFACTURER='" . $_POST['MANUFACTURER'] . "'";
+        }
 
-    $sql = "SELECT * FROM ordinateur WHERE statut = 'actif' LIMIT $lignes_par_page OFFSET $offset";
+        $OS = $_POST['OS'];
+        $sql = "SELECT * FROM ordinateur WHERE statut = 'actif' $MANUFACTURER  AND OS='$OS' LIMIT $lignes_par_page OFFSET $offset";
+    }else{
+        $sql = "SELECT * FROM ordinateur WHERE statut = 'actif' LIMIT $lignes_par_page OFFSET $offset";
+    }
     $result = mysqli_query($connect, $sql);
 
     echo '<div class="tech-content">';
-    echo '<h1 class="page-title">Gestion du Matériel</h1>';;
+    echo '<h1 class="page-title">Gestion du Matériel</h1>';
+
+
+/*                                formulaire pour les filtre                                   */
+    $categorie = [
+            'MANUFACTURER', 'OS'
+    ];
+
+    echo "<div class='form-container'>
+            <h1 class='form-title'>Ajouter un ordinateur </h1>";
+
+    echo '<form method="post" action="ordinateur.php" id="ajoutOrdinateur">';
+
+    for ($i = 0; $i < count($categorie); $i++) {
+
+        echo '<div class="form-group">';
+        $table ='ordinateur';
+        $table1 = ($categorie[$i] == 'MANUFACTURER') ? 'constructeur' : 'OS';
+        echo '<label for="' . $categorie[$i] . '">' . $categorie[$i] . '</label>
+                  <select name="' . $categorie[$i] . '" id="' . $categorie[$i] . '" form="ajoutOrdinateur">
+                  <option value="">--choisir un '.$table.'--</option>';
+        $sql1 = "SELECT DISTINCT($categorie[$i]) FROM " . $table;
+        $result1 = mysqli_query($connect, $sql1);
+        while ($ligne1 = mysqli_fetch_row($result1)) {
+            echo '<option value="' . $ligne1[0] . '">' . $ligne1[0] . '</option>';
+        }
+        echo '</select>';
+        echo '</div>';
+    }
+
+    echo '<button type="submit" class="form-button" name="ajouter">Ajouter</button>
+              </form>
+              </div>';
+
 
     echo "<table>
     <caption>
