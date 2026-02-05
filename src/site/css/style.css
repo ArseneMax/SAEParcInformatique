@@ -362,7 +362,15 @@ input[type="password"]:focus {
   box-shadow: 0 0 0 4px rgba(184, 74, 47, 0.1);
 }
 #MANUFACTURER,
-#OS{
+#OS,
+#DOMAIN,
+#LOCATION,
+#BUILDING,
+#ROOM,
+#MODEL,
+#SIZE_INCH,
+#RESOLUTION,
+#CONNECTOR{
     width: 100%;
     padding: 14px 16px;
     border: 2px solid #e0e0e0;
@@ -379,7 +387,15 @@ input[type="password"]:focus {
 }
 
 #MANUFACTURER:focus,
-#OS:focus {
+#OS:focus,
+#DOMAIN:focus,
+#LOCATION:focus,
+#BUILDING:focus,
+#ROOM:focus,
+#MODEL:focus,
+#SIZE_INCH:focus,
+#RESOLUTION:focus,
+#CONNECTOR:focus{
     outline: none;
     border-color: var(--terracotta);
     background-color: white;
