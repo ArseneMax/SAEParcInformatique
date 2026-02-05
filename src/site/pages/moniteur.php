@@ -22,13 +22,72 @@ if (isset($_SESSION['login'])) {
     $total_lignes = $row_count['total'];
     $total_pages = ceil($total_lignes / $lignes_par_page);
 
+    if (isset($_POST['MANUFACTURER'], $_POST['MODEL'], $_POST['SIZE_INCH'], $_POST['RESOLUTION'], $_POST['CONNECTOR'])) {
+        if ($_POST['MANUFACTURER'] == "") {
+            $MANUFACTURER="";
+        }else{
+            $MANUFACTURER = "AND MANUFACTURER='" . $_POST['MANUFACTURER'] . "'";
+        }
+        if ($_POST['MODEL'] == "") {
+            $MODEL="";
+        }else{
+            $MODEL = "AND MODEL='" . $_POST['MODEL'] . "'";
+        }
+        if ($_POST['SIZE_INCH'] == "") {
+            $SIZE_INCH="";
+        }else{
+            $SIZE_INCH = "AND SIZE_INCH='" . $_POST['SIZE_INCH'] . "'";
+        }
+        if ($_POST['RESOLUTION'] == "") {
+            $RESOLUTION="";
+        }else{
+            $RESOLUTION = "AND RESOLUTION='" . $_POST['RESOLUTION'] . "'";
+        }
+        if ($_POST['CONNECTOR'] == "") {
+            $CONNECTOR="";
+        }else{
+            $CONNECTOR = "AND CONNECTOR='" . $_POST['CONNECTOR'] . "'";
+        }
 
-    $sql = "SELECT * FROM moniteur WHERE statut = 'actif' LIMIT $lignes_par_page OFFSET $offset";
+        $sql = "SELECT * FROM moniteur WHERE statut = 'actif' $MANUFACTURER $MODEL $SIZE_INCH $RESOLUTION $CONNECTOR LIMIT $lignes_par_page OFFSET $offset";
+    }else{
+        $sql = "SELECT * FROM moniteur WHERE statut = 'actif' LIMIT $lignes_par_page OFFSET $offset";
+    }
+
     $result = mysqli_query($connect, $sql);
 
     echo '<div class="tech-content">
-    <h1 class="page-title">Gestion du Matériel</h1>
-    <table>
+    <h1 class="page-title">Gestion du Matériel</h1>';
+
+    /*                                formulaire pour les filtre                                   */
+    $categorie = [
+            'MANUFACTURER', 'MODEL', 'SIZE_INCH', 'RESOLUTION', 'CONNECTOR'
+    ];
+
+    echo "<div class='form-container'>
+            <h1 class='form-title'>Filtrer les Moniteurs </h1>";
+
+    echo '<form method="post" action="moniteur.php" id="filtrerMoniteur">';
+
+    for ($i = 0; $i < count($categorie); $i++) {
+        echo '<div class="form-group">';
+        echo '<label for="' . $categorie[$i] . '">' . $categorie[$i] . '</label>
+                  <select name="' . $categorie[$i] . '" id="' . $categorie[$i] . '" form="filtrerMoniteur">
+                  <option value="">--choisir un '.$categorie[$i].'--</option>';
+        $sql1 = "SELECT DISTINCT($categorie[$i]) FROM moniteur";
+        $result1 = mysqli_query($connect, $sql1);
+        while ($ligne1 = mysqli_fetch_row($result1)) {
+            echo '<option value="' . $ligne1[0] . '">' . $ligne1[0] . '</option>';
+        }
+        echo '</select>';
+        echo '</div>';
+    }
+
+    echo '<button type="submit" class="form-button" name="filtrer">Filtrer</button>
+              </form>
+              </div>';
+
+    echo'<table>
         <caption>
         Table des Moniteurs
         </caption>

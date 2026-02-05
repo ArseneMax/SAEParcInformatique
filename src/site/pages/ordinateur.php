@@ -22,15 +22,36 @@ if (isset($_SESSION['login'])) {
     $total_lignes = $row_count['total'];
     $total_pages = ceil($total_lignes / $lignes_par_page);
 
-    if (isset($_POST['MANUFACTURER'],$_POST['OS'])) {
+    if (isset($_POST['MANUFACTURER'],$_POST['OS'],$_POST['DOMAIN'],$_POST['LOCATION'], $_POST['BUILDING'], $_POST['ROOM'])) {
         if ($_POST['MANUFACTURER'] == "") {
             $MANUFACTURER="";
         }else{
             $MANUFACTURER = "AND MANUFACTURER='" . $_POST['MANUFACTURER'] . "'";
         }
-
-        $OS = $_POST['OS'];
-        $sql = "SELECT * FROM ordinateur WHERE statut = 'actif' $MANUFACTURER  AND OS='$OS' LIMIT $lignes_par_page OFFSET $offset";
+        if ($_POST['OS'] == "") {
+            $OS="";
+        }else{
+            $OS = "AND OS='" .$_POST['OS']. "'";
+        }if($_POST['DOMAIN']==""){
+            $DOMAIN="";
+        }else{
+            $DOMAIN = "AND DOMAIN='" . $_POST['DOMAIN'] . "'";
+        }if($_POST['LOCATION']==""){
+            $LOCATION="";
+        }else{
+            $LOCATION = "AND LOCATION='" . $_POST['LOCATION'] . "'";
+        }
+        if($_POST['BUILDING']==""){
+            $BUILDING="";
+        }else{
+            $BUILDING = "AND BUILDING='" . $_POST['BUILDING'] . "'";
+        }
+        if($_POST['ROOM']==""){
+            $ROOM="";
+        }else{
+            $ROOM = "AND ROOM='" . $_POST['ROOM'] . "'";
+        }
+        $sql = "SELECT * FROM ordinateur WHERE statut = 'actif' $MANUFACTURER $OS $DOMAIN $LOCATION $BUILDING $ROOM LIMIT $lignes_par_page OFFSET $offset";
     }else{
         $sql = "SELECT * FROM ordinateur WHERE statut = 'actif' LIMIT $lignes_par_page OFFSET $offset";
     }
@@ -42,23 +63,22 @@ if (isset($_SESSION['login'])) {
 
 /*                                formulaire pour les filtre                                   */
     $categorie = [
-            'MANUFACTURER', 'OS'
+            'MANUFACTURER', 'OS', 'DOMAIN', 'LOCATION', 'BUILDING',
+            'ROOM'
     ];
 
     echo "<div class='form-container'>
-            <h1 class='form-title'>Ajouter un ordinateur </h1>";
+            <h1 class='form-title'>Filtrer les Ordinateurs </h1>";
 
-    echo '<form method="post" action="ordinateur.php" id="ajoutOrdinateur">';
+    echo '<form method="post" action="ordinateur.php" id="filtrerOrdinateur">';
 
     for ($i = 0; $i < count($categorie); $i++) {
 
         echo '<div class="form-group">';
-        $table ='ordinateur';
-        $table1 = ($categorie[$i] == 'MANUFACTURER') ? 'constructeur' : 'OS';
         echo '<label for="' . $categorie[$i] . '">' . $categorie[$i] . '</label>
-                  <select name="' . $categorie[$i] . '" id="' . $categorie[$i] . '" form="ajoutOrdinateur">
-                  <option value="">--choisir un '.$table.'--</option>';
-        $sql1 = "SELECT DISTINCT($categorie[$i]) FROM " . $table;
+                  <select name="' . $categorie[$i] . '" id="' . $categorie[$i] . '" form="filtrerOrdinateur">
+                  <option value="">--choisir un '.$categorie[$i].'--</option>';
+        $sql1 = "SELECT DISTINCT($categorie[$i]) FROM ordinateur";
         $result1 = mysqli_query($connect, $sql1);
         while ($ligne1 = mysqli_fetch_row($result1)) {
             echo '<option value="' . $ligne1[0] . '">' . $ligne1[0] . '</option>';
@@ -67,7 +87,7 @@ if (isset($_SESSION['login'])) {
         echo '</div>';
     }
 
-    echo '<button type="submit" class="form-button" name="ajouter">Ajouter</button>
+    echo '<button type="submit" class="form-button" name="filtrer">Filtrer</button>
               </form>
               </div>';
 
