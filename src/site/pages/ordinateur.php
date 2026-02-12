@@ -10,7 +10,6 @@ include("../fragment/navbarTech.php");
 include("../fonctions/database.php");
 if (isset($_SESSION['login'])) {
 
-
     $lignes_par_page = 10;
     $page_actuelle = isset($_GET['page']) ? (int)$_GET['page'] : 1;
     $offset = ($page_actuelle - 1) * $lignes_par_page;
@@ -114,10 +113,14 @@ if (isset($_SESSION['login'])) {
                 <th>MACADDR</th>
                 <th>PURCHASE_DATE</th>
                 <th>WARRANTY_END</th>
-                <th>MODIFICATION</th>
-            </tr>
-            </thead>
-            <tbody>";
+                <th>MODIFICATION</th>";
+                if ($_SESSION['login'] == 'tech') {
+                    echo '<th>SUPPRESSION</th>';
+                    }
+
+echo "</tr>
+    </thead>
+    <tbody>";
 
     while ($ligne = mysqli_fetch_row($result)) {
         array_pop($ligne);
@@ -131,6 +134,16 @@ if (isset($_SESSION['login'])) {
         echo "'>    
                     <button type='submit' class='bouton_ajout'>Modifier</button>
                 </form></td>";
+
+        if ($_SESSION['login'] == 'tech') {
+            echo "<td>
+                <form method='post' action='actions/actionSupressionMachine.php'
+                    onsubmit=\"return confirm('Supprimer ce moniteur ?');\">
+                    <input type='hidden' name='serial' value='". htmlspecialchars($ligne[0]) ."'>
+                    <button type='submit' class='bouton_ajout'>Supprimer</button>
+                </form>
+            </td>";
+        }
         echo "</tr>";
     }
 
