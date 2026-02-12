@@ -114,7 +114,7 @@ if (isset($_SESSION['login'])) {
                 <th>PURCHASE_DATE</th>
                 <th>WARRANTY_END</th>
                 <th>MODIFICATION</th>";
-                if ($_SESSION['login'] == 'tech') {
+                if ($_SESSION['role'] == 'tech') {
                     echo '<th>SUPPRESSION</th>';
                     }
 
@@ -135,11 +135,11 @@ echo "</tr>
                     <button type='submit' class='bouton_ajout'>Modifier</button>
                 </form></td>";
 
-        if ($_SESSION['login'] == 'tech') {
+        if ($_SESSION['role'] == 'tech') {
             echo "<td>
                 <form method='post' action='actions/actionSupressionMachine.php'
                     onsubmit=\"return confirm('Supprimer ce moniteur ?');\">
-                    <input type='hidden' name='serial' value='". htmlspecialchars($ligne[0]) ."'>
+                    <input type='hidden' name='ordinateur' value='". htmlspecialchars($ligne[0]) ."'>
                     <button type='submit' class='bouton_ajout'>Supprimer</button>
                 </form>
             </td>";
