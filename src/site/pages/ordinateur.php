@@ -10,6 +10,12 @@ include("../fragment/navbarTech.php");
 include("../fonctions/database.php");
 if (isset($_SESSION['login'])) {
 
+    // Vérification du statut de la table rebut
+    $sql_rebut = "SELECT statut FROM config_rebut WHERE id = 1";
+    $result_rebut = mysqli_query($connect, $sql_rebut);
+    $row_rebut = mysqli_fetch_assoc($result_rebut);
+    $table_bloquee = ($row_rebut['statut'] == 'inactif');
+
     $lignes_par_page = 10;
     $page_actuelle = isset($_GET['page']) ? (int)$_GET['page'] : 1;
     $offset = ($page_actuelle - 1) * $lignes_par_page;
@@ -59,8 +65,21 @@ if (isset($_SESSION['login'])) {
     echo '<div class="tech-content">';
     echo '<h1 class="page-title">Gestion du Matériel</h1>';
 
+    // Alertes pour le statut de la table rebut
+    if ($table_bloquee) {
+        echo '<div class="alert-warning">
+                <strong>⚠ ATTENTION :</strong> La table de rebut est actuellement en statut INACTIF (bloquée). Aucune suppression n\'est possible.
+              </div>';
+    }
 
-/*                                formulaire pour les filtre                                   */
+    if (isset($_GET['error']) && $_GET['error'] == 'table_bloquee') {
+        echo '<div class="alert-warning">
+                <strong>⚠ Action refusée :</strong> La table de rebut est en statut INACTIF. Contactez l\'administrateur.
+              </div>';
+    }
+
+
+    /*                                formulaire pour les filtre                                   */
     $categorie = [
             'MANUFACTURER', 'OS', 'DOMAIN', 'LOCATION', 'BUILDING',
             'ROOM'
@@ -114,11 +133,11 @@ if (isset($_SESSION['login'])) {
                 <th>PURCHASE_DATE</th>
                 <th>WARRANTY_END</th>
                 <th>MODIFICATION</th>";
-                if ($_SESSION['role'] == 'tech') {
-                    echo '<th>SUPPRESSION</th>';
-                    }
+    if ($_SESSION['role'] == 'tech') {
+        echo '<th>SUPPRESSION</th>';
+    }
 
-echo "</tr>
+    echo "</tr>
     </thead>
     <tbody>";
 
@@ -140,7 +159,7 @@ echo "</tr>
                 <form method='post' action='actions/actionSupressionMachine.php'
                     onsubmit=\"return confirm('Supprimer ce moniteur ?');\">
                     <input type='hidden' name='ordinateur' value='". htmlspecialchars($ligne[0]) ."'>
-                    <button type='submit' class='bouton_ajout'>Supprimer</button>
+                    <button type='submit' class='bouton_ajout' " . ($table_bloquee ? 'disabled' : '') . ">Supprimer</button>
                 </form>
             </td>";
         }
