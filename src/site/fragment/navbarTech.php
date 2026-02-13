@@ -8,8 +8,7 @@
                 if (isset($_SESSION['login'])) {
                     if ($_SESSION['role'] == 'tech') {
                         echo"<li><a href='ajouterMachine.php' class='sub-bouton-nav'>Ajouter Ordinateur</a></li>
-                            <li><a href='ajouterMoniteur.php' class='sub-bouton-nav'>Ajouter Moniteur</a></li>
-                            <li><a href='supression.php' class='sub-bouton-nav'>Supprimer Machine</a></li>
+                            <li><a href='ajouterMoniteur.php' class='sub-bouton-nav'>Ajouter Moniteur</a></li>                          
                             <li><a href='ajoutCSVMachines.php' class='sub-bouton-nav'>Import machines CSV</a></li>
                             <li><a href='rebut.php' class='sub-bouton-nav'>Liste de rebut</a></li>";
                     }else{
