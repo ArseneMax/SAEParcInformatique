@@ -22,7 +22,10 @@ if (isset($_SESSION['login'])) {
         ];
 
         echo "<div class='form-container'>
-            <h1 class='form-title'>Ajouter un ordinateur </h1>";
+            <h1 class='form-title'>Ajouter un ordinateur </h1>
+            <p style='color: #666; font-style: italic; margin-bottom: 20px;'>
+                <strong>Note :</strong> Seuls les 3 premiers champs (NAME, SERIAL, MANUFACTURER) sont obligatoires. Les autres champs peuvent être laissés vides.
+            </p>";
 
         echo '<form method="post" action="actions/actionAjoutOrdinateur.php" id="ajoutOrdinateur">
                 <div class="form-group">
@@ -32,12 +35,14 @@ if (isset($_SESSION['login'])) {
 
         for ($i = 1; $i < count($categorie); $i++) {
             $type = ($categorie[$i] == 'RAM_MB' || $categorie[$i] == 'DISK_GB') ? 'number' : (($categorie[$i] == 'OS' || $categorie[$i] == 'MANUFACTURER') ? 'select' : 'text');
+            // Les 3 premiers champs sont obligatoires : NAME (i=0), SERIAL (i=1), MANUFACTURER (i=2)
+            $isRequired = ($i <= 2) ? 'required' : '';
 
             echo '<div class="form-group">';
             if ($type == 'select') {
                 $table = ($categorie[$i] == 'MANUFACTURER') ? 'constructeur' : 'OS';
                 echo '<label for="' . $categorie[$i] . '">' . $categorie[$i] . '</label>
-                      <select name="' . $categorie[$i] . '" id="' . $categorie[$i] . '" form="ajoutOrdinateur">
+                      <select name="' . $categorie[$i] . '" id="' . $categorie[$i] . '" form="ajoutOrdinateur" ' . $isRequired . '>
                       <option value="">--choisir un '.$table.'--</option>';
                 $sql1 = "SELECT * FROM " . $table;
                 $result1 = mysqli_query($connect, $sql1);
@@ -47,7 +52,7 @@ if (isset($_SESSION['login'])) {
                 echo '</select>';
             }else{
                 echo '<label for="' . $categorie[$i] . '">' . $categorie[$i] . '</label>
-                        <input type="' . $type . '" id="' . $categorie[$i] . '" name="' . $categorie[$i] . '" required>';
+                        <input type="' . $type . '" id="' . $categorie[$i] . '" name="' . $categorie[$i] . '" ' . $isRequired . '>';
             }
             echo '</div>';
         }
@@ -58,8 +63,8 @@ if (isset($_SESSION['login'])) {
             echo"<div class='connexion-error'>
                 Erreur lors de l'ajout d'un ordinateur
             </div>";
-}
-           echo"</div>";
+        }
+        echo"</div>";
 
     }
 }
