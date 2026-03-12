@@ -33,6 +33,8 @@ if (isset($_POST['NAME'], $_POST['SERIAL'], $_POST['MANUFACTURER'], $_POST['ajou
 
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
+    session_start();
+    $_SESSION['flash_success'] = 'Ordinateur ajouté avec succès !';
     $action = "Ajout d'un ordinateur";
     insertionLog($action);
 

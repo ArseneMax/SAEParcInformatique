@@ -19,10 +19,8 @@ if (isset($_POST['SERIAL'], $_POST['MANUFACTURER'], $_POST['MODEL'], $_POST['ajo
         $_POST['SERIAL'], $_POST['MANUFACTURER'], $_POST['MODEL'], $size, $resolution, $connector, $attached_to
     );
 
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
     session_start();
-
+    $_SESSION['flash_success'] = 'Moniteur ajouté avec succès !';
     $action = "Ajout d'un moniteur";
     insertionLog($action);
     header("Location: ../inventory.php");

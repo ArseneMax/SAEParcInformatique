@@ -11,9 +11,9 @@ if (isset($_SESSION['login'])) {
 
 <body>
 <div class="main-content">
-<h1>Bienvenue dans l'inventaire</h1>
+    <?php include("../fragment/flash.php"); ?>
+    <h1>Bienvenue dans l'inventaire</h1>
 </div>
 </body>
 
 </html>
-
