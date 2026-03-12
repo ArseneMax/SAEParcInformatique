@@ -27,37 +27,22 @@ if (isset($_SESSION['login'])) {
     $total_lignes = $row_count['total'];
     $total_pages = ceil($total_lignes / $lignes_par_page);
 
-    if (isset($_POST['MANUFACTURER'],$_POST['OS'],$_POST['DOMAIN'],$_POST['LOCATION'], $_POST['BUILDING'], $_POST['ROOM'])) {
-        if ($_POST['MANUFACTURER'] == "") {
-            $MANUFACTURER="";
-        }else{
-            $MANUFACTURER = "AND MANUFACTURER='" . $_POST['MANUFACTURER'] . "'";
-        }
-        if ($_POST['OS'] == "") {
-            $OS="";
-        }else{
-            $OS = "AND OS='" .$_POST['OS']. "'";
-        }if($_POST['DOMAIN']==""){
-            $DOMAIN="";
-        }else{
-            $DOMAIN = "AND DOMAIN='" . $_POST['DOMAIN'] . "'";
-        }if($_POST['LOCATION']==""){
-            $LOCATION="";
-        }else{
-            $LOCATION = "AND LOCATION='" . $_POST['LOCATION'] . "'";
-        }
-        if($_POST['BUILDING']==""){
-            $BUILDING="";
-        }else{
-            $BUILDING = "AND BUILDING='" . $_POST['BUILDING'] . "'";
-        }
-        if($_POST['ROOM']==""){
-            $ROOM="";
-        }else{
-            $ROOM = "AND ROOM='" . $_POST['ROOM'] . "'";
-        }
+    // Construction des paramètres filtre (GET pour persistance pagination)
+    $filter_params = $_GET;
+    unset($filter_params['page']);
+    $filter_query = http_build_query($filter_params);
+    $base_url = $filter_query ? '?' . $filter_query . '&' : '?';
+
+    if (isset($_GET['MANUFACTURER'], $_GET['OS'], $_GET['DOMAIN'], $_GET['LOCATION'], $_GET['BUILDING'], $_GET['ROOM'])) {
+        $MANUFACTURER = ($_GET['MANUFACTURER'] == "") ? "" : "AND MANUFACTURER='" . mysqli_real_escape_string($connect, $_GET['MANUFACTURER']) . "'";
+        $OS           = ($_GET['OS'] == "")           ? "" : "AND OS='"           . mysqli_real_escape_string($connect, $_GET['OS'])           . "'";
+        $DOMAIN       = ($_GET['DOMAIN'] == "")       ? "" : "AND DOMAIN='"       . mysqli_real_escape_string($connect, $_GET['DOMAIN'])       . "'";
+        $LOCATION     = ($_GET['LOCATION'] == "")     ? "" : "AND LOCATION='"     . mysqli_real_escape_string($connect, $_GET['LOCATION'])     . "'";
+        $BUILDING     = ($_GET['BUILDING'] == "")     ? "" : "AND BUILDING='"     . mysqli_real_escape_string($connect, $_GET['BUILDING'])     . "'";
+        $ROOM         = ($_GET['ROOM'] == "")         ? "" : "AND ROOM='"         . mysqli_real_escape_string($connect, $_GET['ROOM'])         . "'";
+
         $sql = "SELECT * FROM ordinateur WHERE statut = 'actif' $MANUFACTURER $OS $DOMAIN $LOCATION $BUILDING $ROOM LIMIT $lignes_par_page OFFSET $offset";
-    }else{
+    } else {
         $sql = "SELECT * FROM ordinateur WHERE statut = 'actif' LIMIT $lignes_par_page OFFSET $offset";
     }
     $result = mysqli_query($connect, $sql);
@@ -81,25 +66,26 @@ if (isset($_SESSION['login'])) {
 
     /*                                formulaire pour les filtre                                   */
     $categorie = [
-            'MANUFACTURER', 'OS', 'DOMAIN', 'LOCATION', 'BUILDING',
-            'ROOM'
+        'MANUFACTURER', 'OS', 'DOMAIN', 'LOCATION', 'BUILDING',
+        'ROOM'
     ];
 
-    echo "<div class='form-container'>
-            <h1 class='form-title'>Filtrer les Ordinateurs </h1>";
+    echo "<div class='filter-form-container'>
+            <h1 class='form-title'>Filtrer les Ordinateurs</h1>";
 
-    echo '<form method="post" action="ordinateur.php" id="filtrerOrdinateur">';
+    echo '<form method="get" action="ordinateur.php" id="filtrerOrdinateur">';
 
     for ($i = 0; $i < count($categorie); $i++) {
-
+        $selected_val = isset($_GET[$categorie[$i]]) ? $_GET[$categorie[$i]] : '';
         echo '<div class="form-group">';
         echo '<label for="' . $categorie[$i] . '">' . $categorie[$i] . '</label>
                   <select name="' . $categorie[$i] . '" id="' . $categorie[$i] . '" form="filtrerOrdinateur">
-                  <option value="">--choisir un '.$categorie[$i].'--</option>';
+                  <option value="">--choisir--</option>';
         $sql1 = "SELECT DISTINCT($categorie[$i]) FROM ordinateur";
         $result1 = mysqli_query($connect, $sql1);
         while ($ligne1 = mysqli_fetch_row($result1)) {
-            echo '<option value="' . $ligne1[0] . '">' . $ligne1[0] . '</option>';
+            $sel = ($ligne1[0] == $selected_val) ? ' selected' : '';
+            echo '<option value="' . htmlspecialchars($ligne1[0]) . '"' . $sel . '>' . htmlspecialchars($ligne1[0]) . '</option>';
         }
         echo '</select>';
         echo '</div>';
@@ -173,45 +159,42 @@ if (isset($_SESSION['login'])) {
         echo '<div class="pagination">';
 
         if ($page_actuelle > 1) {
-            echo '<a href="?page=' . ($page_actuelle - 1) . '">« Précédent</a>';
+            echo '<a href="' . $base_url . 'page=' . ($page_actuelle - 1) . '">« Précédent</a>';
         } else {
             echo '<span class="page-disabled">« Précédent</span>';
         }
 
-
         $range = 2;
 
-
         if ($page_actuelle > $range + 2) {
-            echo '<a href="?page=1">1</a>';
+            echo '<a href="' . $base_url . 'page=1">1</a>';
             echo '<span class="page-dots">...</span>';
         }
-
 
         for ($i = max(1, $page_actuelle - $range); $i <= min($total_pages, $page_actuelle + $range); $i++) {
             if ($i == $page_actuelle) {
                 echo '<span class="page-active">' . $i . '</span>';
             } else {
-                echo '<a href="?page=' . $i . '">' . $i . '</a>';
+                echo '<a href="' . $base_url . 'page=' . $i . '">' . $i . '</a>';
             }
         }
 
-
         if ($page_actuelle < $total_pages - $range - 1) {
             echo '<span class="page-dots">...</span>';
-            echo '<a href="?page=' . $total_pages . '">' . $total_pages . '</a>';
+            echo '<a href="' . $base_url . 'page=' . $total_pages . '">' . $total_pages . '</a>';
         }
 
-        // Bouton Suivant
         if ($page_actuelle < $total_pages) {
-            echo '<a href="?page=' . ($page_actuelle + 1) . '">Suivant »</a>';
+            echo '<a href="' . $base_url . 'page=' . ($page_actuelle + 1) . '">Suivant »</a>';
         } else {
             echo '<span class="page-disabled">Suivant »</span>';
         }
 
-
         echo '<div class="page-jump">';
-        echo '<form method="get" action="" style="display: inline-flex; gap: 5px; align-items: center;">';
+        echo '<form method="get" action="">';
+        foreach ($filter_params as $k => $v) {
+            echo '<input type="hidden" name="' . htmlspecialchars($k) . '" value="' . htmlspecialchars($v) . '">';
+        }
         echo '<span>Page :</span>';
         echo '<input type="number" name="page" min="1" max="' . $total_pages . '" value="' . $page_actuelle . '">';
         echo '<button type="submit">Aller</button>';
